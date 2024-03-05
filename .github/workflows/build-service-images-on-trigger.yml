@@ -1,4 +1,4 @@
-name: Build, Test and Push Cellmaps Services to Dockerhub on PR Merge
+name: Build, Test and Push Cellmaps Services to Dockerhub on Trigger
 on:
     workflow_dispatch
 
