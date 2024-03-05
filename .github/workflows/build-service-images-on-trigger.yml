@@ -24,7 +24,8 @@ jobs:
                     dir_of_image=$(dirname $dockerfile)
                     image_name=${image_name//\//-}
                     docker_image_name="${image_name//[^a-zA-Z0-9]/-}"
-                    docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push
+                    echo "Building $docker_image_name"
+                    docker buildx build --platform linux/amd64,linux/arm64 -t $docker_image_name:latest $dir_of_image --push
                 done;
 
 
