@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>CellMaps: Canvas based image annotation tool</title>
+        <script src="https://unpkg.com/konva@8.4.3/konva.min.js"></script>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: auto;
+                background-color: #f0f0f0;
+            }
+
+            #controls {
+                position: absolute;
+                padding: 1vh;
+                background-color: rgba(255, 255, 0, 0.5);
+                top: 20px;
+                left: 5vw;
+            }
+            #controls div{
+                display: block;
+                float: left;
+            }
+
+            #confidenceLevelControls button,p{
+                display: block;
+                float: left;
+            }
+
+            #confidenceLevelControls p{
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+            #confidenceLevelControls button {
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div id="container"></div>
+        <div id="controls", tabIndex="0">
+                <div id="confidenceLevelControls">
+                Contrast:
+                <input
+                id="contrast"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.5"
+                />
+            </div>
+
+            <div id="submitControls">
+                <button onclick=onSubmit()>
+                    Submit
+                </button>
+    
+            </div>
+        </div>
+        
+    <script>
+        // Load the background Image and draw the initial ROIs if there are any
+        // Set the Conva Container width to window.innerWidth and the height window.innerWidth * aspect_ratio
+        var window_width = window.innerWidth;
+        var window_height = window.innerHeight;
+        var stage;
+        var context;
+        // Creat two Layers, the background layer which is static and the roiLayer, where the ROIs will be drawn
+        var backgroundLayer = new Konva.Layer();
+        var roiLayer = new Konva.Layer();
+        // Create Transformer so ROIs can be resized
+        var tr = new Konva.Transformer();
+
+        // global boolean variables for controlling app state
+        var drawROI = false;
+        var inShape = false;
+        var transformMode = false;
+        var controlsToggle = true;
+
+        // global variables for ROI and background Image
+        var confidence_index = 0;
+        var currentROI;
+        var lastPos; 
+        var src_image_width,src_image_height,src_aspect_ratio;
+        var sliders = ['contrast'];
+        var workflow_id = '{{workflow_id}}'
+        // var args = JSON.parse('{{args}}')
+    
+        
+        // Load the Slide Image
+        var imageObj = new Image();
+        
+        imageObj.onload = function(){
+            src_image_width = imageObj.width;
+            src_image_height = imageObj.height;
+            src_aspect_ratio = src_image_height / src_image_width
+            imageObj.crossOrigin = 'Anonymous';
+            var image = new Konva.Image({
+                x:0,
+                y:0,
+                image: imageObj,
+                width: window_width,
+                height: window_width * src_aspect_ratio
+            });
+
+            // for controlling the variables contrast in the browser
+            image.cache();
+            image.filters([Konva.Filters.Enhance]);
+            sliders.forEach(function (attr) {
+            var slider = document.getElementById(attr);
+            function update() {
+                image[attr](parseFloat(slider.value));
+            }
+            slider.oninput = update;
+            update();
+            });
+
+             // Create Conva Stage
+            stage = new Konva.Stage({
+            container: 'container',
+            width: window_width,
+            height: window_width*src_aspect_ratio,
+        });
+        backgroundLayer.add(image)
+
+
+        stage.add(backgroundLayer,roiLayer);
+
+
+        stage.on("mousedown",mousedownHandler);
+        stage.on("mousemove",mousemoveHandler);
+        stage.on("mouseup",mouseupHandler);
+        stage.on("click",clickHandler);
+        roiLayer.add(tr);
+        }
+
+        imageObj.src = '{{nuclear_stain_static}}'
+        // imageObj.src = "https://st.hzcdn.com/simgs/pictures/hallways/fishermans-wharf-artistic-designs-for-living-tineke-triggs-img~bc01a92002dc7a37_4-7103-1-2568238.jpg"
+
+        function clickHandler(e){
+            if(!inShape && !transformMode) {return}
+            else if (!inShape && transformMode){
+                tr.nodes([])
+                transformMode = false
+            }
+            
+            if (e.evt.shiftKey && !transformMode){
+                tr.nodes([e.target])
+                transformMode = true
+            }
+            else if ((e.evt.shiftKey && transformMode)){
+                // perhaps additional logic here if target is the same as previous target
+                
+                if (e.target != tr.getNodes()[0]){
+                    tr.nodes([e.target])
+                }
+                else {
+                    tr.nodes([])
+                    transformMode = false
+                }
+            }
+        }
+
+        function mousedownHandler(){
+            // Need to handle logic for clicking on an existing shape
+            if (!inShape && !transformMode){
+                drawROI = true;
+                pos = stage.getPointerPosition()
+                currentROI = new Konva.Rect({
+                x : pos.x,
+                y : pos.y,
+                width: 0,
+                height: 0,
+                stroke: "red"
+            })
+            }
+        }
+
+        function mouseupHandler(){
+            // If a ROI is being drawn then 
+            if (drawROI){
+                drawROI = false;
+                // Add callbacks
+                currentROI.on('mouseover', function(e){
+                    inShape = true;
+                    e.target.stroke("green");
+                })
+                currentROI.on('mouseout', function(e){
+                    inShape = false;
+                    e.target.stroke("red");
+                })
+
+                currentROI.on('click', function(e){
+                    if (e.evt.ctrlKey){
+                        e.target.destroy();
+                    }
+                })
+            }
+        }
+
+        function mousemoveHandler(){
+            if (!drawROI) return;
+            const newRectWidth = stage.getPointerPosition().x - currentROI.x();
+            const newRectHeigth = stage.getPointerPosition().y - currentROI.y();
+            currentROI.width(newRectWidth);
+            currentROI.height(newRectHeigth);
+            roiLayer.add(currentROI).batchDraw();
+
+        }
+
+        function onSubmit(){
+            // args.parameters.predicted_ROIs = [OFF_ROIS]
+            const rois = roiLayer.getChildren().filter(child => child.className === 'Rect');
+            var final_rois = []
+            // Convert to rectangles to ROI Objects and store in List
+            for (roi of rois) {
+                // Making sure the ROI is valid
+                if (roi.getX() < roi.getX() + roi.getWidth() && roi.getY() < roi.getY() + roi.getHeight()){
+                    final_rois.push({
+                    "x1": roi.getX(),
+                    "y1": roi.getY(),
+                    "x2" : roi.getX() + roi.getWidth(),
+                    "y2" : roi.getY() + roi.getHeight(),
+                    "img_w" : roiLayer.getWidth(),
+                    "img_h" : roiLayer.getHeight()
+                })
+                }
+                
+            }
+
+            // Add them to json object
+            args = {
+                'system_parameters' : {
+                    'workflow_id' : workflow_id
+                },
+                'workflow_parameters' : {
+                    'rois' : final_rois},
+            } 
+
+            
+            // Convert to a JSON String
+            const request_body = JSON.stringify(args);
+            // Make Post Request
+            var request = new XMLHttpRequest();
+            // To be populated on the server side
+            request.open('POST', "{{endpoint}}")
+            // Do I need Headers?
+            request.onreadystatechange = function () {
+                    if (this.readyState === 4) {
+                        console.log('Status:', this.status);
+                        console.log('Headers:', this.getAllResponseHeaders());
+                        console.log('Body:', this.responseText);
+
+                        let redirect = JSON.parse(this.responseText)
+                        console.log(redirect)
+                        window.location.href=redirect.url
+                    }
+                };
+            
+            // Need to make the request right because I'm getting 
+            // unprocessable entity
+            console.log(request_body)
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send(request_body)
+        }
+
+
+       
+        // Event Listener for toggling control bar on and off
+        document.onkeydown= function(e){
+            if(e.key === 'Escape'){
+                var elm = document.getElementById('controls')
+                if (elm.style.display === 'none'){
+                    elm.style.display = 'block'
+                }
+                else{
+                    elm.style.display = 'none'
+                } 
+            }
+        };
+
+        // Event listener to have the control bar as sticky``
+        document.addEventListener("scroll", (event) => {
+        let scroll = this.scrollY;
+        elm = document.getElementById('controls') 
+        elm.style.top = `${20 + scroll}px`
+        });
+
+    </script>
+    </body>
+</html>
+
+
+

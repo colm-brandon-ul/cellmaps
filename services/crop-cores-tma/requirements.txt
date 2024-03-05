@@ -1,0 +1,9 @@
+minio
+pathlib
+pillow
+imagecodecs
+tifffile
+pandas
+opencv-python-headless
+requests
+# git+https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/colm-brandon-ul/hippolib.git

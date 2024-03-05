@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<title>Initialise Whole Slide Image</title>
+<body>
+    
+
+    <!-- Input Form -->
+    <form id="experimentalDataForm">
+        <!-- Cycling through experimental data -->
+    <div id="confidenceLevelControls">
+        <button onclick=cycleExperiments(-1)>
+            <
+        </button>
+        <!-- <p id="experimentDisplay">Experiment:</p> -->
+        <!-- Have to select a datafile -->
+        <label for="experiment_data_id">Experiment ID:</label>
+        <input type="text" name="experiment_data_id" id="experiment_data_id" readonly required>
+        
+        <button onclick=cycleExperiments(1)>
+            >
+        </button>
+    </div>
+    <!-- Have to select a datafile -->
+    <label for="whole_slide_image">Data File:</label>
+    <input type="text" name="whole_slide_image" id="whole_slide_image" readonly required>
+    <br>
+    <!-- nuclear stain, needs to populated in template -->
+    {% if inputSelection.nuclear_stain %}
+    <label for="nuclear_stain">Choose Nuclear Stain:</label>
+     <select name="nuclear_stain" id="nuclear_stain" required></select>   
+    <br>
+    {% endif %} 
+    <!-- nuclear markers, needs to populated in template -->
+    {% if inputSelection.nuclear_markers %}
+        <label for="nuclear_markers">Choose Nuclear Channel Markers:</label>
+        <select multiple name="nuclear_markers" id="nuclear_markers" required></select>  
+    <br>
+    {% endif %} 
+    <!-- membrane markers, needs to populated in template -->
+    {% if inputSelection.membrane_markers %}
+        <label for="membrane_markers">Choose Membrane Channel Markers:</label>
+        <select multiple name="membrane_markers" id="membrane_markers" required></select> 
+    <br>
+    {% endif %} 
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    
+    <script>
+        experiment_increment = 0
+        var workflow_id = '{{workflow_id}}'
+        var workflow_bucket_name = '{{workflow_bucket_name}}'
+        var experiment_data_bucket_name = '{{experiment_data_bucket_name}}'
+        // Input experimental data object passed by templating engine
+        let experimental_data = JSON.parse('{{ experimentaldata|tojson }}');
+        // Input state control object passed by templating engine
+        let inputSelection = JSON.parse('{{ inputSelection|tojson }}');
+
+        // experimental_data = rawdata.data
+
+        
+        // Event Listener for handling form submission
+        var myform = document.getElementById("experimentalDataForm");
+        myform.addEventListener("submit", submitForm);
+        initialiseForm()
+
+        // Function for handling cylcing through experiments
+        function cycleExperiments(increment) {
+            if (experiment_increment + increment >= experimental_data.length || experiment_increment + increment < 0) return;
+            experiment_increment += increment;
+            initialiseForm();
+        }
+
+
+        function initialiseForm() {
+
+            currentExperiment = experimental_data[experiment_increment]
+            // Set experimental name display
+            document.getElementById('experiment_data_id').setAttribute("value",currentExperiment.experiment_name)
+
+            
+
+            // Populate raw data name
+            document.getElementById('whole_slide_image').setAttribute("value",currentExperiment.tiff_name)
+            
+            // Populate nuclear Stain
+            if (inputSelection.nuclear_stain) {
+                document.getElementById('nuclear_stain').innerHTML = ''
+                currentExperiment.channel_markers.forEach(element => {
+                var message = document.createElement('option')
+                message.setAttribute("value",element);
+                var content = document.createTextNode(element)
+                message.appendChild(content)
+                document.getElementById('nuclear_stain').appendChild(message)
+            });}
+
+            // Populate nuclear markers
+            if (inputSelection.nuclear_markers){
+            document.getElementById('nuclear_markers').innerHTML = ''
+            currentExperiment.channel_markers.forEach(element => {
+                var message = document.createElement('option')
+                message.setAttribute("value",element);
+                var content = document.createTextNode(element)
+                message.appendChild(content)
+                document.getElementById('nuclear_markers').appendChild(message)
+
+            });}
+
+            // Populate membrane markers
+            if (inputSelection.membrane_markers){
+            document.getElementById('membrane_markers').innerHTML = ''
+            currentExperiment.channel_markers.forEach(element => {
+                var message = document.createElement('option')
+                message.setAttribute("value",element);
+                var content = document.createTextNode(element)
+                message.appendChild(content)
+                document.getElementById('membrane_markers').appendChild(message)
+
+            });}
+        }
+
+    
+        // Function for submitting form data.
+        function submitForm(e) {
+            e.preventDefault();
+            var myform =    document.getElementById("experimentalDataForm");
+            var formData = new FormData(myform);
+            
+            // Convert form data into appropriate data for back end
+            var object = {
+                'system_parameters' : {
+                    'workflow_id': workflow_id,
+                    'workflow_bucket_name' : workflow_bucket_name,
+                    'experiment_data_bucket_name': experiment_data_bucket_name
+                },
+                'workflow_parameters' : {
+                'experiment_data_id' : null,
+                }
+                // 'whole_slide_image' : null,
+            }
+
+            if (inputSelection.nuclear_stain){
+                object['workflow_parameters']['nuclear_stain'] = null
+            }
+
+            if (inputSelection.nuclear_markers) {
+                object['workflow_parameters']['nuclear_markers'] = []
+            }
+
+            if (inputSelection.membrane_markers) {
+                object['workflow_parameters']['membrane_markers'] = []
+            }
+
+
+            // Iterate over form and add it to new object
+            for(var pair of formData.entries()){
+                if (pair[0] != 'whole_slide_image'){
+                    try {
+                    object['workflow_parameters'][pair[0]].push(pair[1]);
+                    } catch (error) {
+                        if(error instanceof TypeError) {
+                            object['workflow_parameters'][pair[0]] = pair[1];
+                        } 
+                    }
+                }  
+            }
+
+            // Send to backend
+            console.log(object)
+
+            // Convert to a JSON String
+            const request_body = JSON.stringify(object);
+            var request = new XMLHttpRequest();
+            // endpoint be populated on the server side
+            request.open('POST', "{{endpoint}}")
+            request.onreadystatechange = function () {
+                    if (this.readyState === 4) {
+                        console.log('Status:', this.status);
+                        console.log('Headers:', this.getAllResponseHeaders());
+                        console.log('Body:', this.responseText);
+
+                        let redirect = JSON.parse(this.responseText)
+                        console.log(redirect)
+                        window.location.href=redirect.url
+                    }
+                };
+            console.log(request_body)
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send(request_body)
+        }
+
+       
+        
+    console.log(document.referrer)
+
+    </script>
+    
+</body>
+</html>
