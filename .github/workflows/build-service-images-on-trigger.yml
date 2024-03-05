@@ -20,7 +20,7 @@ jobs:
 
             - name: Build and push Image
               run: |
-                for dockerfile in $(find ./services -name Dockerfile); do
+                for dockerfile in $(find . -name Dockerfile); do
                     dir_of_image=$(dirname $dockerfile)
                     image_name=${image_name//\//-}
                     docker_image_name="${image_name//[^a-zA-Z0-9]/-}"
