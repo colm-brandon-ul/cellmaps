@@ -26,8 +26,14 @@ jobs:
                     image_name=$(basename $dir_of_image)
                     image_name=${image_name//\//-}
                     docker_image_name="${image_name//[^a-zA-Z0-9]/-}"
-                    echo "Building $docker_image_name"
-                    docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push
+
+                    if [[ "$docker_image_name" == "create-missile-obj-dtma" ]]; then
+                    
+                      echo "Building $docker_image_name"
+                      docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push
+
+                    fi
+                    
                 done;
 
 
