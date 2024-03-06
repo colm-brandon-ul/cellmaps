@@ -33,23 +33,5 @@ WORKDIR /app
 CMD ["python3", "main.py"]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 LABEL cincodebio.schema="{"abstract_concept": "DataTransformation", "service_type": "automated", "service_name": "CreateMissileObjectWSI", "process_input": {"CLASS_TYPE": "dataclass", "FIELDS": [{"name": "workflow_parameters", "type": "WorkflowParameters", "default_value": null, "metadata": null, "optional": false}, {"name": "system_parameters", "type": "SystemParameters", "default_value": null, "metadata": null, "optional": false}, {"name": "data", "type": "Data", "default_value": null, "metadata": null, "optional": false}], "SystemParameters": {"CLASS_TYPE": "dataclass", "FIELDS": [{"name": "data_flow", "type": "DataFlow", "default_value": null, "metadata": null, "optional": false}], "DataFlow": {"CLASS_TYPE": "dataclass", "FIELDS": [{"name": "missile_metadata", "type": "bool", "default_value": null, "metadata": null, "optional": false}, {"name": "missile_counts", "type": "bool", "default_value": null, "metadata": null, "optional": false}, {"name": "missile_spatial_data", "type": "bool", "default_value": null, "metadata": null, "optional": false}]}}, "WorkflowParameters": {"CLASS_TYPE": "dataclass", "FIELDS": [{"name": "protein_channel_markers", "type": "ProteinChannelMarkers", "default_value": null, "metadata": null, "optional": false}]}, "Data": {"CLASS_TYPE": "dataclass", "FIELDS": [{"name": "whole_slide_image_missile_fcs", "type": "WholeSlideImageMissileFCS", "default_value": null, "metadata": null, "optional": false}]}}, "process_output": {"CLASS_TYPE": "dataclass", "FIELDS": [{"name": "data", "type": "Data", "default_value": null, "metadata": null, "optional": false}, {"name": "control", "type": "Control", "default_value": "Control.success", "metadata": null, "optional": false}], "Control": {"CLASS_TYPE": "enum", "FIELDS": [{"name": "success", "value": "success"}]}, "Data": {"CLASS_TYPE": "dataclass", "FIELDS": [{"name": "missile_metadata", "type": "MissileMetadata", "default_value": null, "metadata": null, "optional": false}, {"name": "missile_counts", "type": "MissileExpressionCounts", "default_value": null, "metadata": null, "optional": false}, {"name": "missile_spatial_data", "type": "MissileExpressionSpatialData", "default_value": null, "metadata": null, "optional": false}]}}, "prepare_template_input": null, "prepare_template_output": null}" \ 
  cincodebio.ontology_version="cellmaps_sdk~0.1.0"

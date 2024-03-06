@@ -10,5 +10,8 @@ for dockerfile in $(find ./services -name Dockerfile); do
     image_name=${image_name//\//-}
     docker_image_name="${image_name//[^a-zA-Z0-9]/-}"
     echo "Building $docker_image_name"
+    cd $dir_of_image
+    cellmaps eval app/main.py 
     # docker buildx build --platform linux/amd64,linux/arm64 -t $docker_image_name --push $dir_of_image
+    cd ../../
     done

@@ -38,7 +38,7 @@ class AutomatedTest(unittest.TestCase):
 
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'service_parameters': {'numNeighbours': 28}, 'workflow_parameters': {'protein_channel_markers': ['A0']}, 'system_parameters': {'data_flow': {'missile_clusters': False}}, 'data': {'missile_expression_counts': {'url': 'tests/data/missile_expression_countsA0.csv'}, 'missile_metadata': {'url': 'tests/data/missile_metadataA0.csv'}}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'service_parameters': {'numNeighbours': 6}, 'workflow_parameters': {'protein_channel_markers': ['A0']}, 'system_parameters': {'data_flow': {'missile_clusters': True}}, 'data': {'missile_expression_counts': {'url': 'tests/data/missile_expression_countsA0.csv'}, 'missile_metadata': {'url': 'tests/data/missile_metadataA0.csv'}}})
 
         # Run the script
         result = subprocess.run(['python3', 'app/main.py'], capture_output=True, text=True, env=env)

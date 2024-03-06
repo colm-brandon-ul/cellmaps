@@ -38,7 +38,7 @@ class AutomatedTest(unittest.TestCase):
 
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'system_parameters': {'data_flow': {'dearrayed_tissue_micro_array': True}}, 'workflow_parameters': {'rois': [{'x1': 3066, 'y1': 910, 'x2': 3935, 'y2': 2545, 'img_w': 4065, 'img_h': 3094}]}, 'data': {'tissue_micro_array': {'A0': {'url': 'tests/data/tissue_micro_array/A0.ome.tiff'}}}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'system_parameters': {'data_flow': {'dearrayed_tissue_micro_array': False}}, 'workflow_parameters': {'rois': [{'x1': 347, 'y1': 2473, 'x2': 1726, 'y2': 2612, 'img_w': 2273, 'img_h': 3671}]}, 'data': {'tissue_micro_array': {'A0': {'url': 'tests/data/tissue_micro_array/A0.ome.tiff'}}}})
 
         # Run the script
         result = subprocess.run(['python3', 'app/main.py'], capture_output=True, text=True, env=env)
