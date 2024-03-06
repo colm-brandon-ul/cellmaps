@@ -2,8 +2,7 @@ FROM continuumio/miniconda3:4.12.0 as builder
 
 COPY requirements.txt .
 
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk && \
-    pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 
 COPY app/ app/
 COPY tests/ tests/
@@ -17,8 +16,8 @@ FROM continuumio/miniconda3:4.12.0
 
 COPY --from=builder /app /app
 COPY requirements.txt .
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk && \
-    pip install -r requirements.txt --no-cache-dir
+
+RUN pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /app
 

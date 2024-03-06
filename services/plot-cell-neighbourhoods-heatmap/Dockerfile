@@ -1,4 +1,4 @@
-FROM cdbrpy2baseimage as builder
+FROM sccecincodebio/rpy2-base-image:latest as builder
 
 COPY app/ app/
 COPY tests/ tests/
@@ -7,8 +7,7 @@ COPY install-dependencies.r .
 COPY requirements.txt .
 COPY r-requirements.txt .
 
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir "cellmaps_sdk[R]" && \
-    pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 # This may not work for BIOCONDUCTOR packages
 RUN Rscript install-dependencies.r r-requirements.txt
 
@@ -17,7 +16,7 @@ RUN python3 -m unittest discover -s tests/scripts/ -p 'test_*.py'
 
 
 # Second stage: build the final image without test data
-FROM cdbrpy2baseimage
+FROM sccecincodebio/rpy2-base-image:latest 
 
 COPY --from=builder /app /app
 
@@ -25,8 +24,7 @@ COPY install-dependencies.r .
 COPY r-requirements.txt .
 COPY requirements.txt .
 
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir "cellmaps_sdk[R]" && \
-    pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 # This may not work for BIOCONDUCTOR packages
 RUN Rscript install-dependencies.r r-requirements.txt
 

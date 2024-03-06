@@ -7,8 +7,7 @@ COPY install-dependencies.r .
 COPY requirements.txt .
 COPY r-requirements.txt .
 
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir "cellmaps_sdk[R]" && \
-    pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 # This may not work for BIOCONDUCTOR packages
 RUN Rscript install-dependencies.r r-requirements.txt
 

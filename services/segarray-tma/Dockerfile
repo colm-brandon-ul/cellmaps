@@ -6,8 +6,7 @@ COPY tests/ tests/
 COPY requirements.txt .
 COPY requirements-torch.txt .
 
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk && \
-    pip install -r requirements.txt --no-cache-dir \
+RUN pip install -r requirements.txt --no-cache-dir \
     && pip install -r requirements-torch.txt --no-cache-dir
 
 # Run the tests
@@ -21,8 +20,7 @@ COPY --from=builder /app /app
 COPY requirements.txt .
 COPY requirements-torch.txt .
 
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk && \
-    pip install -r requirements.txt --no-cache-dir \
+RUN pip install -r requirements.txt --no-cache-dir \
     && pip install -r requirements-torch.txt --no-cache-dir
 
 WORKDIR /app
