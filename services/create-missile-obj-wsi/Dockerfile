@@ -1,4 +1,4 @@
-FROM rpy2/base-ubuntu as builder
+FROM sccecincodebio/rpy2-base-image:latest as builder
 
 COPY app/ app/
 COPY tests/ tests/
@@ -16,7 +16,7 @@ RUN python3 -m unittest discover -s tests/scripts/ -p 'test_*.py'
 
 
 # Second stage: build the final image without test data
-FROM rpy2/base-ubuntu
+FROM sccecincodebio/rpy2-base-image:latest
 
 COPY --from=builder /app /app
 
