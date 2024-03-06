@@ -9,7 +9,7 @@ COPY r-requirements.txt .
 
 RUN pip install -r requirements.txt --no-cache-dir
 # This may not work for BIOCONDUCTOR packages
-RUN Rscript install-dependencies.r r-requirements.txt
+# RUN Rscript install-dependencies.r r-requirements.txt
 
 # Run the tests
 RUN python3 -m unittest discover -s tests/scripts/ -p 'test_*.py' 
@@ -26,7 +26,7 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt --no-cache-dir
 # This may not work for BIOCONDUCTOR packages
-RUN Rscript install-dependencies.r r-requirements.txt
+# RUN Rscript install-dependencies.r r-requirements.txt
 
 WORKDIR /app
 
