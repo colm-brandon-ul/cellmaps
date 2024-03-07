@@ -38,7 +38,7 @@ class InteractiveTest(unittest.TestCase):
 
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'system_parameters': {'data_flow': {'whole_slide_image': False, 'nuclear_stain': True, 'nuclear_markers': True, 'membrane_markers': False, 'protein_channel_markers': False}}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'system_parameters': {'data_flow': {'whole_slide_image': False, 'nuclear_stain': False, 'nuclear_markers': False, 'membrane_markers': False, 'protein_channel_markers': True}}})
         env['CINCODEBIO_ROUTING_KEY'] = 'test.prepare-template'
 
         # Run the script and test prepare-template
@@ -76,7 +76,7 @@ class InteractiveTest(unittest.TestCase):
         # Now test the process implementation
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'workflow_parameters': {'experiment_data_id': 'Kr2uoKbzlZ', 'nuclear_stain': 'A0', 'nuclear_markers': ['A0'], 'membrane_markers': ['A0']}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'workflow_parameters': {'experiment_data_id': 'iq0ZZ4nKUh', 'nuclear_stain': 'A0', 'nuclear_markers': ['A0'], 'membrane_markers': ['A0']}})
         env['CINCODEBIO_ROUTING_KEY'] = 'test.process'
 
         # Run the script
