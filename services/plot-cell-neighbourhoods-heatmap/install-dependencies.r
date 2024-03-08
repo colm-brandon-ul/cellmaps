@@ -1,7 +1,7 @@
 # This seems to work and throws an error when the package isn't installed!
 # install remotes if not installed
 if (!requireNamespace("remotes", quietly = TRUE))
-    withCallingHandlers(install.packages("remotes"), warning = function(w) stop(w))
+    withCallingHandlers(install.packages("remotes", repos="https://cloud.r-project.org"), warning = function(w) stop(w))
 
 # Get the file name from command line argument
 args <- commandArgs(trailingOnly = TRUE)
