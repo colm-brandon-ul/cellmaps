@@ -1,5 +1,5 @@
 for dockerfile in $(find ./services -name Dockerfile); do
-    code $dockerfile
+    # code $dockerfile
     dir_of_image=$(dirname $dockerfile)
     last_folder=$(basename $dir_of_image)
     

@@ -1,0 +1,143 @@
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+                    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+                    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+                    ontologyIRI="http://example.com/cellmaps"
+                    versionIRI="http://example.com/cellmaps/1.0.0">
+
+    <!-- BEGIN: Importing another ontology -->
+    <Import>
+        <OntologyIRI>http://example.com/another-ontology</OntologyIRI>
+    </Import>
+    <!-- END: Importing another ontology -->
+
+    <!-- Add your ontology content here -->
+
+
+    <owl:Class rdf:about="#TissueMicroArrayProteinChannel">
+        <rdfs:label>TissueMicroArrayProteinChannel</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#OMETIFF"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#TissueMicroArray">
+        <rdfs:label>TissueMicroArray</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#NonAtomic"/>
+        <!-- Need to model mixin with hashmap & that the hashmap has k,v of str and TissueMicroArrayProteinChannel -->
+    </owl:Class>
+
+    <owl:Class rdf:about="#WholeSlideImageProteinChannel">
+        <rdfs:label>WholeSlideImageProteinChannel</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#OMETIFF"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#WholeSlideImage">
+        <rdfs:label>WholeSlideImage</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#NonAtomic"/>
+        <!-- Need to model mixin with hashmap & that the hashmap has k,v of str and TissueMicroArrayProteinChannel -->
+    </owl:Class>
+
+
+    <owl:Class rdf:about="#WholeSlideImageNucleusSegmentationMask">
+        <rdfs:label>WholeSlideImageNucleusSegmentationMask</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#OMETIFF"/>
+    </owl:Class>
+    
+     <owl:Class rdf:about="#WholeSlideImageMembraneSegmentationMask">
+        <rdfs:label>WholeSlideImageMembraneSegmentationMask</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#OMETIFF"/>
+    </owl:Class>
+
+    <!-- WholeSlideImageCellSegmentationMask - will come back to this -->
+
+    <owl:Class rdf:about="#TissueCoreNucleusSegmentationMask">
+        <rdfs:label>TissueCoreNucleusSegmentationMask</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#OMETIFF"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#TissueCoreMembraneSegmentationMask">
+        <rdfs:label>TissueCoreMembraneSegmentationMask</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#OMETIFF"/>
+    </owl:Class>
+
+    
+
+    <owl:Class rdf:about="#TissueCoreProteinChannel">
+        <rdfs:label>TissueCoreMembraneSegmentationMask</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#OMETIFF"/>
+    </owl:Class>
+
+
+    <owl:Class rdf:about="#TissueCore">
+        <rdfs:label>TissueCore</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#NonAtomic"/>
+        <!-- Need to model mixin with hashmap & that the hashmap has k,v of str and X -->
+    </owl:Class>
+
+    <!-- TissueCoreCellSegmentationMask -->
+
+    <owl:Class rdf:about="#DearrayedTissueMicroArrayCellSegmentationMask">
+        <rdfs:label>DearrayedTissueMicroArrayCellSegmentationMask</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#NonAtomic"/>
+        <!-- Need to model mixin with hashmap & that the hashmap has k,v of str and X -->
+    </owl:Class>
+
+    <owl:Class rdf:about="#DearrayedTissueMicroArray">
+        <rdfs:label>DearrayedTissueMicroArray</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#NonAtomic"/>
+        <!-- Need to model mixin with hashmap & that the hashmap has k,v of str and X -->
+    </owl:Class>
+
+
+    <owl:Class rdf:about="#WholeSlideImageMissileFCS">
+        <rdfs:label>WholeSlideImageMissileFCS</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#CSV"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="#TissueCoreMissileFCS">
+        <rdfs:label>TissueCoreMissileFCS</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#CSV"/>
+    </owl:Class>
+
+
+    DearrayedTissueMicroArrayMissileFCS
+
+    <owl:Class rdf:about="#DearrayedTissueMicroArrayMissileFCS">
+        <rdfs:label>DearrayedTissueMicroArrayMissileFCS</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#NonAtomic"/>
+        <!-- Need to model mixin with hashmap & that the hashmap has k,v of str and X -->
+    </owl:Class>
+
+    <owl:Class rdf:about="#Plot">
+        <rdfs:label>Plot</rdfs:label>
+        <rdfs:comment>TBC</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Atomic"/>
+        <rdfs:subClassOf rdf:resource="#PNG"/>
+    </owl:Class>
+    
+
+</Ontology>

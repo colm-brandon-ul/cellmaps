@@ -38,7 +38,7 @@ class InteractiveTest(unittest.TestCase):
 
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'workflow_parameters': {'nuclear_stain': 'A0', 'predicted_rois': [{'confidence_value': 0.851981552374395, 'rois': [{'x1': 276, 'y1': 3562, 'x2': 279, 'y2': 3797, 'img_w': 1319, 'img_h': 4530}]}]}, 'data': {'tissue_micro_array': {'A0': {'url': 'tests/data/tissue_micro_array/A0.ome.tiff'}}}, 'system_parameters': {'data_flow': {'rois': False}}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'workflow_parameters': {'nuclear_stain': 'A0', 'predicted_rois': [{'confidence_value': 0.49232195025510306, 'rois': [{'x1': 3111, 'y1': 389, 'x2': 3304, 'y2': 719, 'img_w': 3542, 'img_h': 2429}]}]}, 'data': {'tissue_micro_array': {'A0': {'url': 'tests/data/tissue_micro_array/A0.ome.tiff'}}}, 'system_parameters': {'data_flow': {'rois': True}}})
         env['CINCODEBIO_ROUTING_KEY'] = 'test.prepare-template'
 
         # Run the script and test prepare-template
@@ -76,7 +76,7 @@ class InteractiveTest(unittest.TestCase):
         # Now test the process implementation
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'workflow_parameters': {'rois': [{'x1': 562, 'y1': 942, 'x2': 816, 'y2': 973, 'img_w': 1026, 'img_h': 3028}]}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'workflow_parameters': {'rois': [{'x1': 428, 'y1': 734, 'x2': 1660, 'y2': 739, 'img_w': 2015, 'img_h': 2060}]}})
         env['CINCODEBIO_ROUTING_KEY'] = 'test.process'
 
         # Run the script
