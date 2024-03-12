@@ -3,7 +3,7 @@
 # Only supporting python3.
 ARG TF_VERSION=2.8.4
 
-FROM --platform=linux/aarch64 tensorflow/tensorflow:${TF_VERSION} as builder
+FROM tensorflow/tensorflow:${TF_VERSION} as builder
 
 
 # https://forums.developer.nvidia.com/t/notice-cuda-linux-repository-key-rotation/212771
@@ -26,7 +26,7 @@ RUN python -m unittest discover -s tests/scripts/ -p 'test_*.py'
 
 
 # Second stage: build the final image without test data
-FROM --platform=linux/aarch64 tensorflow/tensorflow:${TF_VERSION}
+FROM tensorflow/tensorflow:${TF_VERSION}
 
 RUN apt-get update && apt-get install -y  \
     graphviz && \
