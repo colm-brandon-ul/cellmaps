@@ -1,4 +1,4 @@
-cellmaps_sdk
+cellmaps-sdk
 opencv-python-headless
 deepcell
 scikit-image

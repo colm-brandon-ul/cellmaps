@@ -1,4 +1,4 @@
-cellmaps-sdk==0.0.1
+cellmaps-sdk
 minio
 pathlib
 pillow
