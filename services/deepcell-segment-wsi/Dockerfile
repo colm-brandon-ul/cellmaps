@@ -3,7 +3,7 @@
 # Only supporting python3.
 ARG TF_VERSION=2.8.4
 
-FROM --platform=linux/aarch64 tensorflow/tensorflow:${TF_VERSION} as builder
+FROM tensorflow/tensorflow:${TF_VERSION} as builder
 
 
 # https://forums.developer.nvidia.com/t/notice-cuda-linux-repository-key-rotation/212771
@@ -18,15 +18,14 @@ RUN apt-get update && apt-get install -y  \
 COPY app/ app/
 COPY requirements.txt .
 COPY tests/ tests/
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk && \
-    pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 # Run the tests
 RUN python -m unittest discover -s tests/scripts/ -p 'test_*.py' 
 
 
 
 # Second stage: build the final image without test data
-FROM --platform=linux/aarch64 tensorflow/tensorflow:${TF_VERSION}
+FROM tensorflow/tensorflow:${TF_VERSION}
 
 RUN apt-get update && apt-get install -y  \
     graphviz && \
@@ -35,8 +34,7 @@ RUN apt-get update && apt-get install -y  \
 
 COPY --from=builder /app /app
 COPY requirements.txt .
-RUN pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk && \
-    pip install -r requirements.txt --no-cache-dir
+RUN pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /app
 

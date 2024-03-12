@@ -1,15 +1,7 @@
-minio
-pathlib
-pillow
-imagecodecs
-numpy
-tifffile
-pandas
+cellmaps_sdk
 opencv-python-headless
 deepcell
 scikit-image
 scipy
 scikit-learn
 requests
-cellmaps_sdk
-# git+https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/colm-brandon-ul/hippolib.git
