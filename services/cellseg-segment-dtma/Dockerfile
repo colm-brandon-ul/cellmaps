@@ -5,7 +5,6 @@ COPY requirements.txt .
 COPY app/ app/
 COPY tests/ tests/
 RUN conda install -c conda-forge python=3.7 -y  \
-    && pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk \
     && conda install -c conda-forge  cytoolz==0.10.0 \
     && pip install -r requirements.txt --no-cache-dir
 
@@ -20,7 +19,6 @@ COPY --from=builder /app /app
 COPY requirements.txt .
 
 RUN conda install -c conda-forge python=3.7 -y  \
-    && pip install --trusted-host host.docker.internal -i http://host.docker.internal:3141/colmbrandon/dev/ --no-cache-dir cellmaps_sdk \
     && conda install -c conda-forge  cytoolz==0.10.0 \
     && pip install -r requirements.txt --no-cache-dir
     

@@ -62,11 +62,12 @@ class CellSegDTMAProcessOutput:
 
 
 class CellSegDTMA(CellSegmentation,Automated):
+    _ROUTING_KEY = 'CellSegDTMA'
     def __init__(self) -> None:
         super().__init__()
 
     def deserialize_process_input(self,body) -> CellSegDTMAProcessInput:
-        return data_utils.decode_dict(data_class=CellSegDTMAProcessInput,data=body.args)
+        return data_utils.decode_dict(data_class=CellSegDTMAProcessInput,data=body)
 
         
     def process(self, prefix, input: CellSegDTMAProcessInput) -> CellSegDTMAProcessOutput:
@@ -105,3 +106,6 @@ class CellSegDTMA(CellSegmentation,Automated):
             )
         )
 
+
+if __name__ == "__main__":
+    CellSegDTMA().run()

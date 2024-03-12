@@ -51,11 +51,12 @@ class DeepcellDTMAProcessOutput:
 
 
 class DeepcellDTMA(CellSegmentation,Automated):
+    _ROUTING_KEY = 'DeepcellDTMA'
     def __init__(self) -> None:
         super().__init__()
 
     def deserialize_process_input(self,body) -> DeepcellDTMAProcessInput:
-        return data_utils.decode_dict(data_class=DeepcellDTMAProcessInput,data=body.args)
+        return data_utils.decode_dict(data_class=DeepcellDTMAProcessInput,data=body)
 
         
     def process(self, prefix, input: DeepcellDTMAProcessInput) -> DeepcellDTMAProcessOutput:
@@ -127,9 +128,6 @@ class DeepcellDTMA(CellSegmentation,Automated):
                 dearrayed_tissue_micro_array_cell_segmentation_masks=temp
             )
         )
-
-
-
 
 if __name__ == "__main__()":
     DeepcellDTMA().run()

@@ -63,11 +63,12 @@ class CellSegWSIProcessOutput:
 
 
 class CellSegWSI(CellSegmentation,Automated):
+    _ROUTING_KEY = 'CellSegWSI'
     def __init__(self) -> None:
         super().__init__()
 
     def deserialize_process_input(self,body) -> CellSegWSIProcessInput:
-        return data_utils.decode_dict(data_class=CellSegWSIProcessInput,data=body.args)
+        return data_utils.decode_dict(data_class=CellSegWSIProcessInput,data=body)
 
         
     def process(self, prefix, input: CellSegWSIProcessInput) -> CellSegWSIProcessOutput:
@@ -104,3 +105,6 @@ class CellSegWSI(CellSegmentation,Automated):
         )
 
 
+
+if __name__ == '__main__':
+    CellSegWSI().run()

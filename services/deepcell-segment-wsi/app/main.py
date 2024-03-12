@@ -51,13 +51,12 @@ class DeepcellWSIProcessOutput:
 
 class DeepcellWSI(CellSegmentation,Automated):
     _ROUTING_KEY = 'DeepcellWSI'
-    _a = 'process'
 
     def __init__(self) -> None:
         super().__init__()
 
     def deserialize_process_input(self,body) -> DeepcellWSIProcessInput:
-        return data_utils.decode_dict(data_class=DeepcellWSIProcessInput,data=body.args)
+        return data_utils.decode_dict(data_class=DeepcellWSIProcessInput,data=body)
 
         
     def process(self, prefix, input: DeepcellWSIProcessInput) -> DeepcellWSIProcessOutput:
@@ -131,3 +130,6 @@ class DeepcellWSI(CellSegmentation,Automated):
                 whole_slide_image_cell_segmentation_masks=temp
             )
         )
+    
+if __name__ == '__main__':
+    DeepcellWSI().run()
