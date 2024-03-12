@@ -12,6 +12,7 @@ from cellmaps_sdk.data import MembraneMarkers, NuclearMarkers, NuclearStain, Pro
 from cellmaps_sdk import data_utils
 from cellmaps_sdk.process import Automated, Interactive, Service, Start
 from cellmaps_sdk._utils import read_minio
+from cellmaps_sdk._config import Config as _Config
 
 
 if os.environ.get('CELLMAPS_DEBUG') == False:
@@ -87,7 +88,7 @@ class InitWSI(Start,Interactive):
 
     def prepare_template(self, prefix, submit_url, input: InitWSIPrepareTemplateInput) -> InitWSIPrepareTemplateOutput:
         # read_minio
-        if os.environ.get('CELLMAPS_DEBUG') == False:
+        if _Config.DEBUG() == False:
             experimental_data = read_minio()
         else:
             # Create mock experimental data (for testing purposes only)
