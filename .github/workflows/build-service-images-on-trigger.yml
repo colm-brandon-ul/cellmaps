@@ -31,7 +31,7 @@ jobs:
                     if [ $docker_image_name == "deepcell-segment-dtma" ]; then
                     
                       echo "Building $docker_image_name"
-                      docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push || multiarch_image_name=0 && echo "Failed to build $docker_image_name" >> build.log
+                      docker buildx build --platform linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push || multiarch_image_name=0 && echo "Failed to build $docker_image_name" >> build.log
                       
                       if [ $multiarch_image_name -ne 1 ]; then
                         echo "Previous command failed"
