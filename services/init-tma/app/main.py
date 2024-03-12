@@ -96,6 +96,7 @@ class InitTMA(Start,Interactive):
 
 
     def prepare_template(self, prefix, submit_url, input: InitTMAPrepareTemplateInput) -> InitTMAPrepareTemplateOutput:
+        logging.warning(f"DEBUG: {os.environ}")
         if _Config.DEBUG() == False:
             experimental_data = read_minio()
         else:
