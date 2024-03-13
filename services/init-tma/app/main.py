@@ -96,9 +96,9 @@ class InitTMA(Start,Interactive):
 
 
     def prepare_template(self, prefix, submit_url, input: InitTMAPrepareTemplateInput) -> InitTMAPrepareTemplateOutput:
-        logging.warning(f"DEBUG: {os.environ}")
         if _Config.DEBUG() == False:
             experimental_data = read_minio()
+
         else:
             # Create mock experimental data (for testing purposes only)
             experimental_data = [
@@ -108,6 +108,8 @@ class InitTMA(Start,Interactive):
                 "channel_markers" : ['A0']
                 }
             ]
+
+        logging.warning(f"DEBUG: {experimental_data}")
         template = self.env.get_template("form-tma.html")
 
         # This needs to be replaced
