@@ -123,8 +123,6 @@
     </owl:Class>
 
 
-    DearrayedTissueMicroArrayMissileFCS
-
     <owl:Class rdf:about="#DearrayedTissueMicroArrayMissileFCS">
         <rdfs:label>DearrayedTissueMicroArrayMissileFCS</rdfs:label>
         <rdfs:comment>TBC</rdfs:comment>

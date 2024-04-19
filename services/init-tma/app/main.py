@@ -11,18 +11,21 @@ import tifffile #type: ignore
 from cellmaps_sdk.data import MembraneMarkers, NuclearMarkers, NuclearStain, ProteinChannelMarker, ProteinChannelMarkers, TissueMicroArray, TissueMicroArrayProteinChannel
 from cellmaps_sdk import data_utils
 from cellmaps_sdk.process import Interactive, Start
-from cellmaps_sdk._utils import read_minio
 from cellmaps_sdk._config import Config as _Config
-
-
-
-if os.environ.get('CELLMAPS_DEBUG') == False:
-    from hippo.data_management import data_management #type: ignore
-else:
-    from cellmaps_sdk._cli_utils import TestGenerator
 
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
+
+
+
+if _Config.DEBUG() == False:
+    # from hippo.data_management import data_management #type: ignore
+    from cellmaps_sdk._utils import read_minio,get_experiment_data_urls,download_stacked_tiff_locally
+else:
+    import numpy as np
+    from cellmaps_sdk._cli_utils import TestGenerator
+
+
 
 # What comes from the execution environment
 @dataclass
@@ -124,14 +127,14 @@ class InitTMA(Start,Interactive):
     def process(self, prefix, input: InitTMAProcessInput) -> InitTMAProcessOutput:
         protein_channel_markers = ProteinChannelMarkers()
         # Temporary Fix for methods which directly interact with the Minio -> Need to abstract this away
-        if os.environ.get('CELLMAPS_DEBUG') == False:
+        if _Config.DEBUG() == False:
             # Based on the form selections / get the TIFF file and the markers.txt file
-            tiff_url, channel_marker_url = data_management.get_experiment_data_urls(
-            os.environ.get('MINIO_EXPERIMENT_BUCKET'), 
+            tiff_url, channel_marker_url = get_experiment_data_urls(
+            _Config._MINIO_EXPERIMENT_BUCKET, 
             input.workflow_parameters.experiment_data_id+'/',)
         
             # Save the Tiff stack locally
-            large_tiff_local_dir  = data_management.download_stacked_tiff_locally(tiff_url)
+            large_tiff_local_dir  = download_stacked_tiff_locally(tiff_url)
             logging.warning(f"LOCAL NAME :{large_tiff_local_dir}")
         
             # Get & Parse Channel Markers txt file and add to points
@@ -145,7 +148,7 @@ class InitTMA(Start,Interactive):
             # Add mock protein channel markers
             protein_channel_markers.append(ProteinChannelMarker('A0'))
             # generate a mock tiff file
-            import numpy as np
+            
             large_tiff_local_dir = 'tf.ome.tiff'
             tifffile.imwrite(large_tiff_local_dir,np.array(TestGenerator.random_image_8bit()), compression='zlib')
             
