@@ -16,7 +16,8 @@ from cellmaps_sdk._config import Config as _Config
 
 
 if _Config.DEBUG() == False:
-    from cellmaps_sdk._utils import read_minio,get_experiment_data_urls,download_stacked_tiff_locally
+    from cellmaps_sdk._utils import read_raw_data,get_experiment_data_urls,download_stacked_tiff_locally
+    from cellmaps_sdk._raw_data import RAW_WSI
 else:
     from cellmaps_sdk._cli_utils import TestGenerator
 
@@ -72,7 +73,7 @@ class InitWSIProcessOutput:
     data: Data
     workflow_parameters: WorkflowParameters
     control: Control = Control.success
-    
+
 
 class InitWSI(Start,Interactive):
     _ROUTING_KEY = 'InitWSI'
@@ -89,7 +90,8 @@ class InitWSI(Start,Interactive):
     def prepare_template(self, prefix, submit_url, input: InitWSIPrepareTemplateInput) -> InitWSIPrepareTemplateOutput:
         # read_minio
         if _Config.DEBUG() == False:
-            experimental_data = read_minio()
+            # Get the experimental data, this reads the raw data from the minio, and returns a list of dictionaries
+            experimental_data = read_raw_data(ExperimentClass = RAW_WSI())
         else:
             # Create mock experimental data (for testing purposes only)
             experimental_data = [
@@ -118,18 +120,21 @@ class InitWSI(Start,Interactive):
         protein_channel_markers = ProteinChannelMarkers()
         # Temporary Fix for methods which directly interact with the Minio -> Need to abstract this away
         if _Config.DEBUG() == False:
-            # Based on the form selections / get the TIFF file and the markers.txt file
-            tiff_url, channel_marker_url = get_experiment_data_urls(
-            _Config._MINIO_EXPERIMENT_BUCKET, 
-            input.workflow_parameters.experiment_data_id+'/',)
-        
+            # Based on the form selections / get the urls for the experiment data
+                # the keys for these urls are defined in the RAW_WSI (each files cdb_file_tag)
+            urls = get_experiment_data_urls(
+                ExperimentClass=RAW_WSI(),
+                prefix_name=input.workflow_parameters.experiment_data_id+'/',)
+
+
             # Save the Tiff stack locally
-            large_tiff_local_dir  = download_stacked_tiff_locally(tiff_url)
+            large_tiff_local_dir  = download_stacked_tiff_locally(urls['tiff_name'])
             logging.warning(f"LOCAL NAME :{large_tiff_local_dir}")
         
             # Get & Parse Channel Markers txt file and add to points
-            response = requests.get(channel_marker_url)
+            response = requests.get(urls['channel_markers'])
 
+            # store as a list of ProteinChannelMarker objects
             for l in response.text.split('\n'):
                 if l.rstrip() != '':
                     protein_channel_markers.append(ProteinChannelMarker(l.rstrip()))
