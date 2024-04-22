@@ -16,8 +16,8 @@ from cellmaps_sdk._config import Config as _Config
 
 
 if _Config.DEBUG() == False:
-    from cellmaps_sdk._utils import read_raw_data,get_experiment_data_urls,download_stacked_tiff_locally
-    from cellmaps_sdk._raw_data import RAW_WSI
+    from cellmaps_sdk._utils import download_stacked_tiff_locally
+    from cellmaps_sdk._raw_data import RAW_WSI,read_raw_data,get_experiment_data_urls
 else:
     from cellmaps_sdk._cli_utils import TestGenerator
 

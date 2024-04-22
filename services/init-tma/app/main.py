@@ -20,8 +20,8 @@ Image.MAX_IMAGE_PIXELS = None
 
 if _Config.DEBUG() == False:
     # from hippo.data_management import data_management #type: ignore
-    from cellmaps_sdk._utils import read_raw_data,get_experiment_data_urls,download_stacked_tiff_locally
-    from cellmaps_sdk._raw_data import RAW_TMA
+    from cellmaps_sdk._utils import download_stacked_tiff_locally
+    from cellmaps_sdk._raw_data import RAW_TMA,read_raw_data,get_experiment_data_urls
 else:
     import numpy as np
     from cellmaps_sdk._cli_utils import TestGenerator
