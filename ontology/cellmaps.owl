@@ -679,6 +679,37 @@
         <rdfs:comment>Tissue Microarray Experiment - this describes the raw data produced from a TMA imaging run.</rdfs:comment>
         <rdfs:label>TmaExperiment</rdfs:label>
     </owl:Class>
+
+    <owl:ObjectProperty rdf:about="#hasTiffName">
+    <rdfs:domain>
+        <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+                <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#TmaExperiment"/>
+                <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#WsiExperiment"/>
+            </owl:unionOf>
+        </owl:Class>
+    </rdfs:domain>
+    <rdfs:range>
+        <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+                <rdf:Description rdf:about="http://www.cincodebio.org/cdbontology#OMETIFF"/>
+                <rdf:Description rdf:about="http://www.cincodebio.org/cdbontology#TIFF"/>
+            </owl:unionOf>
+        </owl:Class>
+    </rdfs:range>
+</owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="#hasChannelMarkers">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#TmaExperiment"/>
+                    <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#WsiExperiment"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.cincodebio.org/cdbontology#TXT"/>
+    </owl:ObjectProperty>
     
 
 
