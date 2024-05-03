@@ -688,7 +688,7 @@
                 <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#WsiExperiment"/>
             </owl:unionOf>
         </owl:Class>
-    </rdfs:domain>
+    </rdfs:domain>  
     <rdfs:range>
         <owl:Class>
             <owl:unionOf rdf:parseType="Collection">
