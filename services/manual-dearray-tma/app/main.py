@@ -22,7 +22,7 @@ class ManualDearrayTMAPrepareTemplateInput:
     class SystemParameters:
         @dataclass
         class DataFlow:
-            rois: ROIs
+            rois: bool
         data_flow: DataFlow
     @dataclass
     class Data:

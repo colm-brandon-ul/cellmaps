@@ -101,7 +101,7 @@ class InitWSI(Start,Interactive):
                 "channel_markers" : ['A0']
                 }
             ]
-
+        logging.warning(f"DEBUG: {experimental_data}")
         template = self.env.get_template("form-wsi.html")
         # This needs to be replaced
 
