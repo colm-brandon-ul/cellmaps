@@ -208,7 +208,8 @@
                 })
 
                 currentROI.on('click', function(e){
-                    if (e.evt.ctrlKey){
+                    // If the control key is pressed then delete the ROI (meta key for mac users)
+                    if (e.evt.ctrlKey || e.evt.metaKey){
                         e.target.destroy();
                     }
                 })
@@ -260,7 +261,8 @@
                 })
 
                 rect.on('click', function(e){
-                    if (e.evt.ctrlKey){
+                    // If the control key is pressed then delete the ROI (meta key for mac users)
+                    if (e.evt.ctrlKey || e.evt.metaKey){
                         e.target.destroy();
                     }
                 })
