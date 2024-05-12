@@ -31,12 +31,12 @@ jobs:
                     if [[ 1 ]]; then
                     
                       echo "Building $docker_image_name"
-                      docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push || multiarch_image_name=0 && echo "Failed to build $docker_image_name" >> build.log
+                      docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push || multiarch_image_name=0 && echo "Failed to build $docker_image_name"
                       
                       if [ $multiarch_image_name -ne 1 ]; then
                         echo "Previous command failed"
                         # as the build runner is running on amd64, we can try to build the image for amd64 only (as emulation through qemu is not working on the runner)
-                        docker buildx build --platform linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push || echo "Also failed to build $docker_image_name for amd64 only" >> build.log
+                        docker buildx build --platform linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push || echo "Also failed to build $docker_image_name for amd64 only"
                       fi
 
                     fi
