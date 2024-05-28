@@ -87,7 +87,7 @@ class InitTMAProcessOutput:
 
 
 class InitTMA(Start,Interactive):
-    _ROUTING_KEY = 'init-tma'
+    _ROUTING_KEY = 'InitTMA'
     _a = 'prepare-template'
     _b = 'process'
 

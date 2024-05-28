@@ -16,12 +16,9 @@ class AceDTMAProcessInput:
         class DataFlow:
             dearrayed_tissue_micro_array: bool
         data_flow: DataFlow
-
     @dataclass
     class Data:
         dearrayed_tissue_micro_array: DearrayedTissueMicroArray
-
-
     system_parameters: SystemParameters
     data: Data
 
@@ -30,7 +27,6 @@ class AceDTMAProcessInput:
 class AceDTMAProcessOutput:
     class Control(str, Enum):
         success = 'success'
-
     @dataclass
     class Data:
         dearrayed_tissue_micro_array: DearrayedTissueMicroArray
@@ -65,7 +61,6 @@ class AceDTMA(TechnicalVarianceCorrection,Automated):
                     prefix=prefix.add_level(core_name),
                     image_name=channel_name)
         
-
         return AceDTMAProcessOutput(
             data=AceDTMAProcessOutput.Data(
                 dearrayed_tissue_micro_array=temp
