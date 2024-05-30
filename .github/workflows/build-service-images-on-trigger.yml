@@ -28,7 +28,7 @@ jobs:
                     docker_image_name="${image_name//[^a-zA-Z0-9]/-}"
                     multiarch_image_name=1
 
-                    if [[ $docker_image_name == "deepcell-segment-dtma" ]] || [[ $docker_image_name == "deepcell-segment-wsi" ]]; then
+                    if [[ $docker_image_name == "xtracit-dtma" ]] || [[ $docker_image_name == "xtracit-wsi" ]]; then
                     
                       echo "Building $docker_image_name"
                       docker buildx build --platform linux/arm64,linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/$docker_image_name:latest $dir_of_image --push || multiarch_image_name=0 && echo "Failed to build $docker_image_name"
