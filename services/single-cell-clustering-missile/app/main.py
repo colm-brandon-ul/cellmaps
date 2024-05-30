@@ -32,8 +32,8 @@ class SingleCellClusteringMissileProcessInput:
 
     @dataclass 
     class ServiceParameters:
-        numNeighbours: int = field(default=20,metadata={"max": 30, "min": 3})
-
+        numNeighbours: int = 10
+        
     service_parameters: ServiceParameters
     workflow_parameters: WorkflowParameters
     system_parameters: SystemParameters
