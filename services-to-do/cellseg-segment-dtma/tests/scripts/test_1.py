@@ -38,7 +38,7 @@ class AutomatedTest(unittest.TestCase):
 
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'service_parameters': {'overlap': 43, 'threshold': 40, 'increase_factor': 10, 'grow_mask': True, 'grow_pixels': 21, 'grow_method': 'Sequential'}, 'system_parameters': {'data_flow': {'dearrayed_tissue_micro_array_cell_segmentation_masks': False}}, 'workflow_parameters': {'nuclear_stain': 'A0'}, 'data': {'dearrayed_tissue_micro_array': {'A0': {'A0': {'url': 'tests/data/dearrayed_tissue_micro_array/A0/A0.ome.tiff'}}}}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'service_parameters': {'overlap': 15, 'threshold': 24, 'increase_factor': 95, 'grow_mask': True, 'grow_pixels': 95}, 'system_parameters': {'data_flow': {'dearrayed_tissue_micro_array_cell_segmentation_masks': False}}, 'workflow_parameters': {'nuclear_stain': 'A0'}, 'data': {'dearrayed_tissue_micro_array': {'A0': {'A0': {'url': 'tests/data/dearrayed_tissue_micro_array/A0/A0.ome.tiff'}}}}})
 
         # Run the script
         result = subprocess.run(['python3', 'app/main.py'], capture_output=True, text=True, env=env)

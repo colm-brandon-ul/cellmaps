@@ -1,11 +1,10 @@
-FROM continuumio/miniconda3 as builder
+FROM python:3.7 as builder
 
 # install python 3.7.4
 COPY requirements.txt .
 COPY app/ app/
 COPY tests/ tests/
-RUN conda install -c conda-forge python=3.7 -y  \
-    && conda install -c conda-forge  cytoolz==0.10.0 \
+RUN pip install  cytoolz==0.10.0 \
     && pip install -r requirements.txt --no-cache-dir
 
 # Run the tests
@@ -13,13 +12,12 @@ RUN python -m unittest discover -s tests/scripts/ -p 'test_*.py'
 
 
 # Second stage: build the final image without test data
-FROM continuumio/miniconda3
+FROM python:3.7
 
 COPY --from=builder /app /app
 COPY requirements.txt .
 
-RUN conda install -c conda-forge python=3.7 -y  \
-    && conda install -c conda-forge  cytoolz==0.10.0 \
+RUN pip install  cytoolz==0.10.0 \
     && pip install -r requirements.txt --no-cache-dir
 
 WORKDIR /app

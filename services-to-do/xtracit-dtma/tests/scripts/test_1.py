@@ -38,7 +38,7 @@ class AutomatedTest(unittest.TestCase):
 
 
         # This needs to be generated for the service from the schema
-        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'system_parameters': {'data_flow': {'dearrayed_tissue_micro_array_missile_fcs': False}}, 'workflow_parameters': {'nuclear_markers': ['A0'], 'protein_channel_markers': ['A0']}, 'data': {'dearrayed_tissue_micro_array': {'A0': {'A0': {'url': 'tests/data/dearrayed_tissue_micro_array/A0/A0.ome.tiff'}}}, 'dearrayed_tissue_micro_array_cell_segmentation_masks': {'A0': {'nucleus_mask': {'url': 'tests/data/dearrayed_tissue_micro_array_cell_segmentation_masks/A0/Anucleus_mask.ome.tiff'}, 'membrane_mask': {'url': 'tests/data/dearrayed_tissue_micro_array_cell_segmentation_masks/A0/Amembrane_mask.ome.tiff'}}}}})
+        env['CINCODEBIO_DATA_PAYLOAD'] = json.dumps({'system_parameters': {'data_flow': {'dearrayed_tissue_micro_array_missile_fcs': True}}, 'workflow_parameters': {'nuclear_markers': [None], 'protein_channel_markers': [None]}, 'data': {'dearrayed_tissue_micro_array': {'A0': {'A0': {'url': 'tests/data/dearrayed_tissue_micro_array/A0/A0.ome.tiff'}}}, 'dearrayed_tissue_micro_array_cell_segmentation_masks': {'A0': {'nucleus_mask': {'url': 'tests/data/dearrayed_tissue_micro_array_cell_segmentation_masks/A0/Anucleus_mask.ome.tiff'}, 'membrane_mask': {'url': 'tests/data/dearrayed_tissue_micro_array_cell_segmentation_masks/A0/Amembrane_mask.ome.tiff'}}}}})
 
         # Run the script
         result = subprocess.run(['python3', 'app/main.py'], capture_output=True, text=True, env=env)

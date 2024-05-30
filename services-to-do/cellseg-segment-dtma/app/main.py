@@ -31,14 +31,14 @@ class CellSegDTMAProcessInput:
 
     @dataclass
     class ServiceParameters:
-        class GrowMethod(str, Enum):
-            Sequential = 'Sequential'
+        # class GrowMethod(str, Enum):
+        #     Sequential = 'Sequential'
         overlap: int = 80
         threshold: int = 20
         increase_factor: int = 1
         grow_mask: bool = True
         grow_pixels: int = 10
-        grow_method: GrowMethod = GrowMethod.Sequential
+        # grow_method: GrowMethod = GrowMethod.Sequential
         
 
     service_parameters: ServiceParameters
@@ -73,32 +73,32 @@ class CellSegDTMA(CellSegmentation,Automated):
     def process(self, prefix, input: CellSegDTMAProcessInput) -> CellSegDTMAProcessOutput:
         temp = DearrayedTissueMicroArrayCellSegmentationMask()
         for core_name, core in input.data.dearrayed_tissue_micro_array.items():
-            try:
-                nucleus_mask, membrane_mask = hippo_cellseg.segment_core(
-                    core[input.workflow_parameters.nuclear_stain].read(),
-                    overlap=input.service_parameters.overlap,
-                    threshold=input.service_parameters.threshold, 
-                    increase_factor=input.service_parameters.increase_factor, 
-                    grow_mask=input.service_parameters.grow_mask,
-                    grow_pixels=input.service_parameters.grow_pixels,
-                    grow_method=input.service_parameters.grow_method
-                    )
-                    
-                
-                temp[core_name] = TissueCoreCellSegmentationMask(
-                    nucleus_mask=TissueCoreNucleusSegmentationMask.write(
-                        img = nucleus_mask,
-                        image_name= 'nucleus_mask',
-                        prefix=prefix.add_level(core_name) 
-                    ),
-                    membrane_mask=TissueCoreMembraneSegmentationMask.write(
-                        img = membrane_mask,
-                        image_name= 'membrane_mask',
-                        prefix=prefix.add_level(core_name) 
-                    )
+            # try:
+            nucleus_mask, membrane_mask = hippo_cellseg.segment_core(
+                core[input.workflow_parameters.nuclear_stain].read(),
+                overlap=input.service_parameters.overlap,
+                threshold=input.service_parameters.threshold, 
+                increase_factor=input.service_parameters.increase_factor, 
+                grow_mask=input.service_parameters.grow_mask,
+                grow_pixels=input.service_parameters.grow_pixels,
+                grow_method='Sequential'
                 )
-            except Exception as e:
-                logging.warning(f'{core_name} failed, because of: {e.with_traceback}')
+                
+            
+            temp[core_name] = TissueCoreCellSegmentationMask(
+                nucleus_mask=TissueCoreNucleusSegmentationMask.write(
+                    img = nucleus_mask,
+                    image_name= 'nucleus_mask',
+                    prefix=prefix.add_level(core_name) 
+                ),
+                membrane_mask=TissueCoreMembraneSegmentationMask.write(
+                    img = membrane_mask,
+                    image_name= 'membrane_mask',
+                    prefix=prefix.add_level(core_name) 
+                )
+            )
+            # except Exception as e:
+            #     logging.warning(f'{core_name} failed, because of: {e.with_traceback}')
         
         return CellSegDTMAProcessOutput(
             data=CellSegDTMAProcessOutput.Data(

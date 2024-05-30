@@ -3,10 +3,13 @@ from src.cvstitch import CVMaskStitcher
 from src.cvmask import CVMask
 import numpy as np
 from PIL import Image,TiffImagePlugin
+import os
 Image.MAX_IMAGE_PIXELS = None
 
+# Path to the weights file
 
-PATH_TO_WEIGHTS = "src/modelFiles/final_weights.h5"
+
+PATH_TO_WEIGHTS = f"{os.path.dirname(os.path.abspath(__file__))}/src/modelFiles/final_weights.h5"
 
 def segment_core(nucelus_img, overlap=80, threshold=20, increase_factor=1, grow_mask=True, grow_pixels=10, grow_method='Sequential'):
     assert type(nucelus_img) == TiffImagePlugin.TiffImageFile or type(nucelus_img) == Image.Image, f'Please use a PIL.TiffImagePlugin.TiffImageFile, not {type(nucelus_img)}'
