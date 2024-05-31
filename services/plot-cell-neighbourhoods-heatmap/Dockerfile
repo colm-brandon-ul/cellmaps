@@ -6,11 +6,9 @@ COPY tests/ tests/
 COPY install-dependencies.r .
 COPY requirements.txt .
 COPY r-requirements.txt .
-
-RUN pip install -r requirements.txt
 # This may not work for BIOCONDUCTOR packages
 RUN Rscript install-dependencies.r r-requirements.txt
-
+RUN pip install -r requirements.txt
 # Run the tests
 RUN python3 -m unittest discover -s tests/scripts/ -p 'test_*.py' 
 
@@ -23,10 +21,9 @@ COPY --from=builder /app /app
 COPY install-dependencies.r .
 COPY r-requirements.txt .
 COPY requirements.txt .
-
-RUN pip install -r requirements.txt
 # This may not work for BIOCONDUCTOR packages
 RUN Rscript install-dependencies.r r-requirements.txt
+RUN pip install -r requirements.txt
 
 WORKDIR /app
 

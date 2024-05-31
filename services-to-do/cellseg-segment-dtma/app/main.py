@@ -6,7 +6,7 @@ from cellmaps_sdk.data import DearrayedTissueMicroArray, DearrayedTissueMicroArr
 from cellmaps_sdk import data_utils
 from cellmaps_sdk.process import Automated, CellSegmentation
 
-import hippo_cellseg #type: ignore
+import hippo_cellseg #
 
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
