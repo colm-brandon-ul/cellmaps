@@ -1,7 +1,5 @@
 FROM sccecincodebio/rpy2-base-image:latest  as builder
 
-
-
 COPY install-dependencies.r .
 COPY requirements.txt .
 COPY r-requirements.txt .
