@@ -1,8 +1,8 @@
 from typing import Union
 from PIL import Image, TiffImagePlugin
 Image.MAX_IMAGE_PIXELS = None
-from sklearn.multioutput import MultiOutputRegressor
-from sklearn.ensemble import RandomForestRegressor
+# from sklearn.multioutput import MultiOutputRegressor
+# from sklearn.ensemble import RandomForestRegressor
 import pickle
 import numpy as np
 from pathlib import Path
