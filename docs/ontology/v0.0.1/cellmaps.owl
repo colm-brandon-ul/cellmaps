@@ -1,0 +1,1126 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.cellmaps.org/cellmapsontology#"
+    xmlns:cm="http://www.cellmaps.org/cellmapsontology#"
+    xmlns:cdb="http://www.cincodebio.org/cdbontology#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <!-- License Annotations -->
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/license" />
+        <IRI>https://opensource.org/licenses/MIT</IRI>
+    </Annotation>
+
+    <Annotation>
+        <AnnotationProperty IRI="http://purl.org/dc/terms/rights" />
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">This ontology is available
+            under the MIT License</Literal>
+    </Annotation>
+
+    <Annotation>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment" />
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#string">MIT License
+
+            Copyright (c) Cellmaps
+
+            Permission is hereby granted, free of charge, to any person obtaining a copy of this
+            ontology and associated documentation files, to deal in the ontology without
+            restriction, including without limitation the rights to use, copy, modify, merge,
+            publish, distribute, sublicense, and/or sell copies of the ontology, and to permit
+            persons to whom the ontology is furnished to do so, subject to the following conditions:
+            The above copyright notice and this permission notice shall be included in all copies or
+            substantial portions of the ontology.
+
+            THE ONTOLOGY IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+            INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+            PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+            LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+            OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE ONTOLOGY OR THE USE OR
+            OTHER DEALINGS IN THE ONTOLOGY.</Literal>
+    </Annotation>
+    <owl:Ontology
+        rdf:about="https://colm-brandon-ul.github.io/cellmaps/ontology/v0.0.1/cellmaps.owl">
+        <owl:imports
+            rdf:resource="https://colm-brandon-ul.github.io/cincodebio/ontology/v0.0.1/cdbontology.owl" />
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0.1</owl:versionInfo>
+    </owl:Ontology>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Comment -->
+
+    <!-- <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#Comment"/> -->
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#CellSegmentation -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#CellSegmentation">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <rdfs:comment>The service concept for CellSegmentation services, which are involved in
+            segmenting cells in the data.</rdfs:comment>
+        <rdfs:label>CellSegmentation</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#Clustering -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#Clustering">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <cdb:hasModelSpecification>
+            <rdf:Description>
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileExpressionCounts" />
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#ProteinChannelMarkers" />
+                <cdb:hasOutput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileClusters" />
+            </rdf:Description>
+        </cdb:hasModelSpecification>
+        <cdb:hasModelSpecification>
+            <rdf:Description>
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileExpressionCounts" />
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileMetadata" />
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#ProteinChannelMarkers" />
+                <cdb:hasOutput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileClusters" />
+            </rdf:Description>
+        </cdb:hasModelSpecification>
+        <cdb:hasModelSpecification>
+            <rdf:Description>
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileClusters" />
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileMetadata" />
+                <cdb:hasInput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileExpressionSpatialData" />
+                <cdb:hasOutput
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MissileNeighbourhoods" />
+            </rdf:Description>
+        </cdb:hasModelSpecification>
+        <rdfs:comment>The service concept for Clustering services, which are involved in clustering
+            the data.</rdfs:comment>
+        <rdfs:label>Clustering</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#DataTransformation -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#DataTransformation">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <rdfs:comment>The service concept for DataTransformation services, which are involved in
+            transforming the data.</rdfs:comment>
+        <rdfs:label>DataTransformation</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#DeArray -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#DeArray">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <rdfs:comment>The service concept for DeArray services, which are involved in
+            DeArraying/Segmenting Tissue MicroArrays</rdfs:comment>
+        <rdfs:label>DeArray</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArray -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArray">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#HashMap" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasKey" />
+                <owl:allValuesFrom rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueCore" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a Dearrayed Tissue MicroArray.</rdfs:comment>
+        <rdfs:label>DearrayedTissueMicroArray</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArrayCellSegmentationMask -->
+
+    <owl:Class
+        rdf:about="http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArrayCellSegmentationMask">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#HashMap" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasKey" />
+                <owl:allValuesFrom rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueCoreCellSegmentationMask" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a Dearrayed Tissue MicroArray Cell Segmentation Mask(s).</rdfs:comment>
+        <rdfs:label>DearrayedTissueMicroArrayCellSegmentationMask</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArrayMissileFCS -->
+
+    <owl:Class
+        rdf:about="http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArrayMissileFCS">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#HashMap" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasKey" />
+                <owl:allValuesFrom rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueCoreMissileFCS" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a Dearrayed Tissue MicroArray Missile FCS.</rdfs:comment>
+        <rdfs:label>DearrayedTissueMicroArrayMissileFCS</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#FeatureExtraction -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#FeatureExtraction">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <rdfs:comment>The service concept for FeatureExtraction services, which are involved in
+            extracting features from the data.</rdfs:comment>
+        <rdfs:label>FeatureExtraction</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#MembraneMarker -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#MembraneMarker">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+        <rdfs:comment>This class describes a membrane marker.</rdfs:comment>
+        <rdfs:label>MembraneMarker</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#MembraneMarkers -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#MembraneMarkers">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#List" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#MembraneMarker" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a list of membrane markers.</rdfs:comment>
+        <rdfs:label>MembraneMarkers</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#MissileClusters -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#MissileClusters">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#CSV" />
+        <rdfs:comment>This class describes missile clusters.</rdfs:comment>
+        <rdfs:label>MissileClusters</rdfs:label>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    cluster_labels</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#MissileExpressionCounts -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#MissileExpressionCounts">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#CSV" />
+        <rdfs:comment>This class describes missile expression counts.</rdfs:comment>
+        <rdfs:label>MissileExpressionCounts</rdfs:label>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">*</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#MissileExpressionSpatialData -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#MissileExpressionSpatialData">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#CSV" />
+        <rdfs:comment>This class describes missile expression spatial data.</rdfs:comment>
+        <rdfs:label>MissileExpressionSpatialData</rdfs:label>
+        <!-- Schema with x and y -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#MissileMetadata -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#MissileMetadata">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#CSV" />
+        <rdfs:comment>This class describes missile metadata.</rdfs:comment>
+        <rdfs:label>MissileMetadata</rdfs:label>
+        <!-- Schema with all regions and measurements -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    allRegions</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Size</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Perimeter</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorAxisLength</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MinorAxisLength</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Eccentricity</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Solidity</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorMinorAxisRatio</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    PerimeterSquareToArea</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorAxisToEquivalentDiam</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    NucCytoRatio</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#MissileNeighbourhoods -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#MissileNeighbourhoods">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#CSV" />
+        <rdfs:comment>This class describes missile neighbourhoods.</rdfs:comment>
+        <rdfs:label>MissileNeighbourhoods</rdfs:label>
+        <!-- Schema with cluster_labels -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    cluster_labels</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#NuclearMarker -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#NuclearMarker">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+        <rdfs:comment>This class describes a nuclear marker.</rdfs:comment>
+        <rdfs:label>NuclearMarker</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#NuclearMarkers -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#NuclearMarkers">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#List" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearMarker" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a list of nuclear markers.</rdfs:comment>
+        <rdfs:label>NuclearMarkers</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#NuclearStain -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#NuclearStain">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+        <rdfs:comment>This class describes a nuclear stain.</rdfs:comment>
+        <rdfs:label>NuclearStain</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#Plot -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#Plot">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#PNG" />
+        <rdfs:comment>This class describes a plot. Could make this less generic (i.e. to plot type) </rdfs:comment>
+        <rdfs:label>Plot</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#Plotting -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#Plotting">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <rdfs:comment>The service concept for Plotting services, which are involved in plotting the
+            data.</rdfs:comment>
+        <rdfs:label>Plotting</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#ProteinChannelMarker -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#ProteinChannelMarker">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+        <rdfs:comment>This class describes a protein channel marker.</rdfs:comment>
+        <rdfs:label>ProteinChannelMarker</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#ProteinChannelMarkers -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#ProteinChannelMarkers">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#List" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#ProteinChannelMarker" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a list of protein channel markers.</rdfs:comment>
+        <rdfs:label>ProteinChannelMarkers</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#RegionOfInterest -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#RegionOfInterest">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:comment>This class describes a region of interest.</rdfs:comment>
+        <rdfs:label>RegionOfInterest</rdfs:label>
+        <!-- Create an instance of Attribute with the cdb:attributeName -->
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x1</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y1</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x2</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y2</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">img_w</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">img_h</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#RegionsOfInterest -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#List" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionOfInterest" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a list of regions of interest.</rdfs:comment>
+        <rdfs:label>RegionsOfInterest</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicition -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicition">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    confidence_value</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rois</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+        <rdfs:comment>This class describes a prediction of regions of interest.</rdfs:comment>
+        <rdfs:label>RegionsOfInterestPredicition</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredictions -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredictions">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#List" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicition" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a list of regions of interest predictions.</rdfs:comment>
+        <rdfs:label>RegionsOfInterestPredictions</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#Start -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#Start">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <rdfs:comment>The service concept for Start services, which import raw data and prepare it
+            for processing.</rdfs:comment>
+        <rdfs:label>Start</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TechnicalVarianceCorrection -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TechnicalVarianceCorrection">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
+        <rdfs:comment>The service concept for TechnicalVarianceCorrection services, which are
+            involved in correcting technical variance in the data.</rdfs:comment>
+        <rdfs:label>TechnicalVarianceCorrection</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueCore -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TissueCore">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#HashMap" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasKey" />
+                <owl:allValuesFrom rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueCoreProteinChannel" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a Tissue Core.</rdfs:comment>
+        <rdfs:label>TissueCore</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueCoreCellSegmentationMask -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TissueCoreCellSegmentationMask">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueCoreMembraneSegmentationMask" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    membrane_mask</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueCoreNucleusSegmentationMask" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    nucleus_mask</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+        <rdfs:comment>This class describes a cell segmentation mask in a Tissue Core. Which contains
+            a nucleus mask</rdfs:comment>
+        <rdfs:label>TissueCoreCellSegmentationMask</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueCoreMembraneSegmentationMask -->
+
+    <owl:Class
+        rdf:about="http://www.cellmaps.org/cellmapsontology#TissueCoreMembraneSegmentationMask">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#OMETIFF" />
+        <rdfs:comment>This class describes a membrane segmentation mask in a Tissue Core.</rdfs:comment>
+        <rdfs:label>TissueCoreMembraneSegmentationMask</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueCoreMissileFCS -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TissueCoreMissileFCS">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#CSV" />
+        <rdfs:comment>This class describes a missile FCS in a Tissue Core.</rdfs:comment>
+        <rdfs:label>TissueCoreMissileFCS</rdfs:label>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">*</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+
+        <!-- Schema with x and y -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Size</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Perimeter</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorAxisLength</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MinorAxisLength</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Eccentricity</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Solidity</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorMinorAxisRatio</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    PerimeterSquareToArea</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorAxisToEquivalentDiam</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    NucCytoRatio</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+
+        <!-- Schema with Cell_ID and Region -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell_ID</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Region</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueCoreNucleusSegmentationMask -->
+
+    <owl:Class
+        rdf:about="http://www.cellmaps.org/cellmapsontology#TissueCoreNucleusSegmentationMask">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#OMETIFF" />
+        <rdfs:comment>This class describes a nucleus segmentation mask in a Tissue Core.</rdfs:comment>
+        <rdfs:label>TissueCoreNucleusSegmentationMask</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueCoreProteinChannel -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TissueCoreProteinChannel">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#OMETIFF" />
+        <rdfs:comment>This class describes a protein channel in a Tissue Core.</rdfs:comment>
+        <rdfs:label>TissueCoreProteinChannel</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueMicroArray -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TissueMicroArray">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#HashMap" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasKey" />
+                <owl:allValuesFrom rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArrayProteinChannel" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a Tissue MicroArray.</rdfs:comment>
+        <rdfs:label>TissueMicroArray</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TissueMicroArrayProteinChannel -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TissueMicroArrayProteinChannel">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#OMETIFF" />
+        <rdfs:comment>This class describes a protein channel in a Tissue MicroArray.</rdfs:comment>
+        <rdfs:label>TissueMicroArrayProteinChannel</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#TmaExperiment -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#TmaExperiment">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Experiment" />
+        <owl:disjointWith rdf:resource="http://www.cellmaps.org/cellmapsontology#WsiExperiment" />
+        <!-- <cdb:hasFile>
+        <rdf:Description>
+        <rdf:type>
+        <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.cincodebio.org/cdbontology#OMETIFF"/>
+          <rdf:Description rdf:about="http://www.cincodebio.org/cdbontology#TIFF"/>
+        </owl:unionOf>
+        </owl:Class>
+        </rdf:type>
+        <cdb:fileName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">membrane_mask</cdb:fileName>
+        </rdf:Description>
+        </cdb:hasFile> -->
+        <rdfs:comment>Tissue Microarray Experiment - this describes the raw data produced from a TMA
+            imaging run.</rdfs:comment>
+        <rdfs:label>TmaExperiment</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#WholeSlideImage -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#WholeSlideImage">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#HashMap" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasKey" />
+                <owl:allValuesFrom rdf:resource="http://www.cincodebio.org/cdbontology#String" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.cincodebio.org/cdbontology#hasValue" />
+                <owl:allValuesFrom
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImageProteinChannel" />
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>This class describes a Whole Slide Image.</rdfs:comment>
+        <rdfs:label>WholeSlideImage</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#WholeSlideImageCellSegmentationMask -->
+
+    <owl:Class
+        rdf:about="http://www.cellmaps.org/cellmapsontology#WholeSlideImageCellSegmentationMask">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#NonAtomic" />
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImageMembraneSegmentationMask" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    membrane_mask</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+        <cdb:hasAttribute>
+            <rdf:Description>
+                <rdf:type
+                    rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImageNucleusSegmentationMask" />
+                <cdb:attributeName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    nucleus_mask</cdb:attributeName>
+            </rdf:Description>
+        </cdb:hasAttribute>
+        <rdfs:comment>This class describes a cell segmentation mask in a Whole Slide Image. Which
+            contains a nucleus and membrane mask</rdfs:comment>
+        <rdfs:label>WholeSlideImageCellSegmentationMask</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#WholeSlideImageMembraneSegmentationMask -->
+
+    <owl:Class
+        rdf:about="http://www.cellmaps.org/cellmapsontology#WholeSlideImageMembraneSegmentationMask">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#OMETIFF" />
+        <rdfs:comment>This class describes a membrane segmentation mask in a Whole Slide Image.</rdfs:comment>
+        <rdfs:label>WholeSlideImageMembraneSegmentationMask</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#WholeSlideImageMissileFCS -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#WholeSlideImageMissileFCS">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#CSV" />
+        <rdfs:comment>This class describes a missile FCS in a Whole Slide Image.</rdfs:comment>
+        <rdfs:label>WholeSlideImageMissileFCS</rdfs:label>
+        <!-- Schema with wildcard float -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">*</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+
+        <!-- Schema with x and y -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Size</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Perimeter</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorAxisLength</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MinorAxisLength</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Eccentricity</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    Solidity</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorMinorAxisRatio</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    PerimeterSquareToArea</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    MajorAxisToEquivalentDiam</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#float" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+                    NucCytoRatio</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+
+        <!-- Schema with Cell_ID and Region -->
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cell_ID</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+        <cdb:hasSchemaColumnType>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
+                <cdb:schemaColumnName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Region</cdb:schemaColumnName>
+            </rdf:Description>
+        </cdb:hasSchemaColumnType>
+
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#WholeSlideImageNucleusSegmentationMask -->
+
+    <owl:Class
+        rdf:about="http://www.cellmaps.org/cellmapsontology#WholeSlideImageNucleusSegmentationMask">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#OMETIFF" />
+        <rdfs:comment>This class describes a nucleus segmentation mask in a Whole Slide Image.</rdfs:comment>
+        <rdfs:label>WholeSlideImageNucleusSegmentationMask</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#WholeSlideImageProteinChannel -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#WholeSlideImageProteinChannel">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Atomic" />
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#OMETIFF" />
+        <rdfs:comment>This class describes a protein channel in a Whole Slide Image.</rdfs:comment>
+        <rdfs:label>WholeSlideImageProteinChannel</rdfs:label>
+    </owl:Class>
+
+
+    <!-- http://www.cellmaps.org/cellmapsontology#WsiExperiment -->
+
+    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#WsiExperiment">
+        <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#Experiment" />
+        <!-- <cdb:hasFile>
+        <rdf:Description>
+        <rdf:type>
+        <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://www.cincodebio.org/cdbontology#OMETIFF"/>
+          <rdf:Description rdf:about="http://www.cincodebio.org/cdbontology#TIFF"/>
+        </owl:unionOf>
+        </owl:Class>
+        </rdf:type>
+        <cdb:fileName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">membrane_mask</cdb:fileName>
+        </rdf:Description>
+        </cdb:hasFile> -->
+        <rdfs:comment>Whole Slide Image Experiment - this describes the raw data produced from a WSI
+            imaging run.</rdfs:comment>
+        <rdfs:label>WsiExperiment</rdfs:label>
+    </owl:Class>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses" />
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#CellSegmentation" />
+            <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#Clustering" />
+            <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#DataTransformation" />
+            <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#DeArray" />
+            <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#FeatureExtraction" />
+            <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#Plotting" />
+            <rdf:Description rdf:about="http://www.cellmaps.org/cellmapsontology#Start" />
+            <rdf:Description
+                rdf:about="http://www.cellmaps.org/cellmapsontology#TechnicalVarianceCorrection" />
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
