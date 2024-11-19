@@ -353,33 +353,6 @@
                 rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImageMissileFCS" />
         </rdf:Description>
     </cdb:hasModelSpecification>
-    <owl:Class rdf:about="http://www.cellmaps.org/cellmapsontology#FeatureExtraction">
-    <rdfs:subClassOf rdf:resource="http://www.cincodebio.org/cdbontology#ServiceConcept" />
-    <cdb:hasModelSpecification>
-        <rdf:Description>
-            <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearMarkers" />
-            <cdb:hasInput
-                rdf:resource="http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArray" />
-            <cdb:hasInput
-                rdf:resource="http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArrayCellSegmentationMask" />
-            <cdb:hasInput
-                rdf:resource="http://www.cellmaps.org/cellmapsontology#ProteinChannelMarkers" />
-            <cdb:hasOutput
-                rdf:resource="http://www.cellmaps.org/cellmapsontology#DearrayedTissueMicroArrayMissileFCS" />
-        </rdf:Description>
-    </cdb:hasModelSpecification>
-    <cdb:hasModelSpecification>
-        <rdf:Description>
-            <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImage" />
-            <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearMarkers" />
-            <cdb:hasInput
-                rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImageCellSegmentationMask" />
-            <cdb:hasInput
-                rdf:resource="http://www.cellmaps.org/cellmapsontology#ProteinChannelMarkers" />
-            <cdb:hasOutput
-                rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImageMissileFCS" />
-        </rdf:Description>
-    </cdb:hasModelSpecification>
     <rdfs:comment>The service concept for FeatureExtraction services, which are involved in
             extracting features from the data.</rdfs:comment>
         <rdfs:label>FeatureExtraction</rdfs:label>
