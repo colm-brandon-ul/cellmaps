@@ -353,8 +353,10 @@
                 rdf:resource="http://www.cellmaps.org/cellmapsontology#WholeSlideImageMissileFCS" />
         </rdf:Description>
     </cdb:hasModelSpecification>
-    <rdfs:label>FeatureExtraction</rdfs:label>
-    <rdfs:comment>The s
+    <rdfs:comment>The service concept for FeatureExtraction services, which are involved in
+            extracting features from the data.</rdfs:comment>
+        <rdfs:label>FeatureExtraction</rdfs:label>
+    </owl:Class>
 
 
     <!-- http://www.cellmaps.org/cellmapsontology#MembraneMarker -->
