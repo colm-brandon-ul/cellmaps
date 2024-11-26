@@ -210,7 +210,7 @@
                 <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearStain" />
                 <cdb:hasInput
                     rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArray" />
-                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#ROIs" />
+                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest" />
             </rdf:Description>
         </cdb:hasModelSpecification>
         <cdb:hasModelSpecification>
@@ -218,16 +218,16 @@
                 <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearStain" />
                 <cdb:hasInput
                     rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArray" />
-                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#PredictedROIs" />
+                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicition" />
             </rdf:Description>
         </cdb:hasModelSpecification>
         <cdb:hasModelSpecification>
             <rdf:Description>
-                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#ROIs" />
+                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest" />
                 <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearStain" />
                 <cdb:hasInput
                     rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArray" />
-                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#ROIs" />
+                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest" />
             </rdf:Description>
         </cdb:hasModelSpecification>
         <cdb:hasModelSpecification>
@@ -235,13 +235,13 @@
                 <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearStain" />
                 <cdb:hasInput
                     rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArray" />
-                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#PredictedROIs" />
-                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#ROIs" />
+                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicition" />
+                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest" />
             </rdf:Description>
         </cdb:hasModelSpecification>
         <cdb:hasModelSpecification>
             <rdf:Description>
-                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#ROIs" />
+                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest" />
                 <cdb:hasInput
                     rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArray" />
                 <cdb:hasOutput
