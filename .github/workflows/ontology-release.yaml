@@ -1,0 +1,69 @@
+name: Publish Ontology Versions
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ontology/**/*.owl"
+
+jobs:
+  publish-ontology:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ensures full history is fetched
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Extract Ontology Version
+        id: get-version
+        run: |
+          # Find the .owl file in the ontology directory
+          OWL_FILE=$(find ontology -name "cellmaps.owl" | head -n 1)
+          # Check if file exists
+          if [ -z "$OWL_FILE" ]; then
+            echo "No .owl file found in ontology directory"
+            exit 1
+          fi
+          # Extract version using grep and sed
+          VERSION=$(grep -oP 'owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[^<]*' "$OWL_FILE" | sed -e 's/^.*>//')
+          echo "Extracted version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_ENV
+          echo "owl_file=$OWL_FILE" >> $GITHUB_ENV
+
+    # Step 4: Stash the .owl file temporarily
+      - name: Stash Ontology File
+        run: |
+            # Create a temporary directory for stashing the file
+            mkdir -p temp-stash
+            cp ${{ env.owl_file }} temp-stash/
+
+      # Step 4: Switch to the gh-pages branch
+      - name: Checkout gh-pages branch
+        run: |
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+
+      - name: Make version directory
+        run: |
+          # Create version directory in gh-pages branch
+          mkdir -p ontology/v${{ env.version }}
+
+      - name: Copy Ontology File
+        run: |
+          # Copy the .owl file to the version directory
+          cp temp-stash/$(basename "${{ env.owl_file }}") ontology/v${{ env.version }}/
+
+
+      - name: Commit and Push
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add ontology
+          git commit -m "Published ontology version ${{ env.version }}"
+          git push origin gh-pages
