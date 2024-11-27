@@ -98,9 +98,9 @@ class SingleCellClusteringWithMorphologicalMissile(Clustering,Automated):
         return SingleCellClusteringWithMorphologicalMissileProcessOutput(
             data=SingleCellClusteringWithMorphologicalMissileProcessOutput.Data(
                 missile_clusters=MissileClusters.write(
-                    df=c,
+                    c,
                     prefix=prefix,
-                    filename='missile_clusters'
+                    file_name='missile_clusters'
                 )
             )
         )

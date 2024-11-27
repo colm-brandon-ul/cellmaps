@@ -90,19 +90,19 @@ class CreateMissileObjectWSI(DataTransformation,Automated):
         return CreateMissileObjectWSIProcessOutput(
             data=CreateMissileObjectWSIProcessOutput.Data(
                 missile_counts= MissileExpressionCounts.write(
-                            df=a, # gets rdf and coverts to pandas
+                            a, # gets rdf and coverts to pandas
                             prefix=prefix,
-                            filename='counts'
+                            file_name='counts'
                         ),
                 missile_spatial_data=MissileExpressionSpatialData.write(
-                            df=b, # gets rdf and coverts to pandas
+                            b, # gets rdf and coverts to pandas
                             prefix=prefix,
-                            filename='spatial_data'
+                            file_name='spatial_data'
                         ),
                 missile_metadata= MissileMetadata.write(
-                        df=c, # gets rdf and coverts to pandas
+                        c, # gets rdf and coverts to pandas
                         prefix=prefix,
-                        filename='meta_data' 
+                        file_name='meta_data' 
                     )
                 )
             )

@@ -103,9 +103,9 @@ class TissueArchitectureMissile(Clustering,Automated):
         return TissueArchitectureMissileProcessOutput(
             data=TissueArchitectureMissileProcessOutput.Data(
                 neighbourhoods=MissileClusters.write(
-                    df=d,
+                    d,
                     prefix=prefix,
-                    filename='missile_neighbourhoods'
+                    file_name='missile_neighbourhoods'
                 )
             )
         )
