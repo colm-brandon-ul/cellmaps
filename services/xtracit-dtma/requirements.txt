@@ -1,2 +1,2 @@
-cellmaps[image,tabular]
+cdb-cellmaps[image,tabular]
 scikit-image

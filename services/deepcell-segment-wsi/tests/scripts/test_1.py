@@ -8,8 +8,8 @@ import shutil
 from pathlib import Path
 import logging
 
-from cellmaps_sdk.data import *
-from cellmaps_sdk._test_utils import validate_versus_schema, is_valid_html
+from cdb_cellmaps.data import *
+from cdb_cellmaps._test_utils import validate_versus_schema, is_valid_html
 
 
 #recursive function to check if all the files referenced in the json exist

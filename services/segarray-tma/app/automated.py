@@ -7,7 +7,8 @@ import torch
 import unet
 import cv2 
 import numpy as np
-from cellmaps_sdk.data import ROIs, PredictedROIs, ROIsPredictionWrapper, ROI
+from cdb_cellmaps.data import RegionsOfInterest, RegionsOfInterestPredictions, RegionsOfInterestPredicition, RegionOfInterest
+from cdb_cellmaps.data import RegionsOfInterest, RegionsOfInterestPredictions, RegionsOfInterestPredicition, RegionOfInterest
 
 Image.MAX_IMAGE_PIXELS = None
 
@@ -60,25 +61,25 @@ def get_bounding_rects(mask):
 
 
 
-def get_rois_unet(img) -> PredictedROIs:
+def get_rois_unet(img) -> RegionsOfInterestPredictions:
     assert type(img) == TiffImagePlugin.TiffImageFile or type(img) == Image.Image, f'Please use a PIL.TiffImagePlugin.TiffImageFile, not {type(img)}'
     
     # Predict Mask
     mask = unet_predict_mask(img)
     # create semantic wrapper for the rois, conf values
-    p_rois = PredictedROIs()
+    p_rois = RegionsOfInterestPredictions()
 
     # Iterate over the confidence thresholds
     for conf in CONFIDENCE_THRESHOLDS:
         # create semantic wrapper for the roi List
-        temp_rois = ROIs()
+        temp_rois = RegionsOfInterest()
         # Make prediction
         gated_mask = get_gated_mask_by_confidence(mask,conf)
 
-        # Get ROIs for each Core
+        # Get RegionsOfInterest for each Core
         for rect in get_bounding_rects(gated_mask):
             temp_rois.append(
-                ROI(
+                RegionOfInterest(
                 x1=rect[0],
                 y1=rect[1],
                 x2=rect[2],
@@ -88,7 +89,7 @@ def get_rois_unet(img) -> PredictedROIs:
             )
         )
 
-        p_rois.append(ROIsPredictionWrapper(
+        p_rois.append(RegionsOfInterestPredicition(
             confidence_value=conf,
             rois=temp_rois
         ))

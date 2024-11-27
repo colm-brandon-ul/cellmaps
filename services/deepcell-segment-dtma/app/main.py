@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
-from cdb_cellmaps.data import DearrayedTissueMicroArray, DearrayedTissueMicroArrayCellSegmentationMask, MembraneMarkers, NuclearStain, ROIs, TissueCore, TissueCoreCellSegmentationMask, TissueCoreMembraneSegmentationMask, TissueCoreNucleusSegmentationMask
+from cdb_cellmaps.data import DearrayedTissueMicroArray, DearrayedTissueMicroArrayCellSegmentationMask, MembraneMarkers, NuclearStain, TissueCore, TissueCoreCellSegmentationMask, TissueCoreMembraneSegmentationMask, TissueCoreNucleusSegmentationMask
 from cdb_cellmaps import data_utils
 from cdb_cellmaps.process import Automated, CellSegmentation
 
