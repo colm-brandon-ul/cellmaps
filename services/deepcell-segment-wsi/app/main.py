@@ -87,13 +87,13 @@ class DeepcellWSI(CellSegmentation,Automated):
             
             # Write masks to disk
             temp = WholeSlideImageCellSegmentationMask(
-                nucleus_mask= WholeSlideImageNucleusSegmentationMask.write(img=nucleus_mask,
+                nucleus_mask= WholeSlideImageNucleusSegmentationMask.write(data=nucleus_mask,
                                                                             prefix=prefix,
-                                                                            image_name='nucleus_mask'),
+                                                                            file_name='nucleus_mask'),
 
-                membrane_mask=WholeSlideImageMembraneSegmentationMask.write(img=membrane_mask,
+                membrane_mask=WholeSlideImageMembraneSegmentationMask.write(data=membrane_mask,
                                                                             prefix=prefix,
-                                                                            image_name='membrane_mask')
+                                                                            file_name='membrane_mask')
             )
 
             
@@ -110,13 +110,13 @@ class DeepcellWSI(CellSegmentation,Automated):
 
             # Write masks to disk
             temp = WholeSlideImageCellSegmentationMask(
-                nucleus_mask= WholeSlideImageNucleusSegmentationMask.write(img=nucleus_mask,
+                nucleus_mask= WholeSlideImageNucleusSegmentationMask.write(data=nucleus_mask,
                                                                             prefix=prefix,
-                                                                            image_name='nucleus_mask'),
+                                                                            file_name='nucleus_mask'),
 
-                membrane_mask=WholeSlideImageMembraneSegmentationMask.write(img=membrane_mask,
+                membrane_mask=WholeSlideImageMembraneSegmentationMask.write(data=membrane_mask,
                                                                             prefix=prefix,
-                                                                            image_name='membrane_mask')
+                                                                            file_name='membrane_mask')
             )
 
             

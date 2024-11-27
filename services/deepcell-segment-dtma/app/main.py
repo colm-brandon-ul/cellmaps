@@ -85,13 +85,13 @@ class DeepcellDTMA(CellSegmentation,Automated):
                 
                 temp[core_name] = TissueCoreCellSegmentationMask(
                     nucleus_mask=TissueCoreNucleusSegmentationMask.write(
-                        img=nucleus_mask,
+                        data=nucleus_mask,
                         prefix=prefix.add_level(core_name),
-                        image_name='nucleus_mask'),
+                        file_name='nucleus_mask'),
                     membrane_mask=TissueCoreMembraneSegmentationMask.write(
-                        img=membrane_mask,
+                        data=membrane_mask,
                         prefix=prefix.add_level(core_name),
-                        image_name='membrane_mask'),
+                        file_name='membrane_mask'),
                         )
                     
                 # except Exception as e:
@@ -111,13 +111,13 @@ class DeepcellDTMA(CellSegmentation,Automated):
                 
                 temp[core_name] = TissueCoreCellSegmentationMask(
                     nucleus_mask=TissueCoreNucleusSegmentationMask.write(
-                        img=nucleus_mask,
+                        data=nucleus_mask,
                         prefix=prefix.add_level(core_name),
-                        image_name='nucleus_mask'),
+                        file_name='nucleus_mask'),
                     membrane_mask=TissueCoreMembraneSegmentationMask.write(
-                        img=membrane_mask,
+                        data=membrane_mask,
                         prefix=prefix.add_level(core_name),
-                        image_name='membrane_mask'),
+                        file_name='membrane_mask'),
                         )
                     
                 # except Exception as e:
