@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
-from cellmaps_sdk.data import  NuclearMarkers, ProteinChannelMarkers, WholeSlideImage, WholeSlideImageCellSegmentationMask, WholeSlideImageMissileFCS
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, FeatureExtraction
+from cdb_cellmaps.data import  NuclearMarkers, ProteinChannelMarkers, WholeSlideImage, WholeSlideImageCellSegmentationMask, WholeSlideImageMissileFCS
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, FeatureExtraction
 
 
 import numpy as np
@@ -110,9 +110,9 @@ class XtracitWSI(FeatureExtraction,Automated):
             final_df = to_tabular_format.get_final_dataframe(membrane_df,nuclear_df)
 
             # Todo: fix prefix
-            temp = WholeSlideImageMissileFCS.write(df = final_df,
+            temp = WholeSlideImageMissileFCS.write(final_df,
                                                    prefix=prefix,
-                                                    filename="AO")
+                                                    file_name="AO")
 
         except Exception as e:
             

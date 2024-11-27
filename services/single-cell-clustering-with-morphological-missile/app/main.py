@@ -5,9 +5,9 @@ from dataclasses import field, dataclass
 from enum import Enum
 from typing import Any
 
-from cellmaps_sdk.data import MissileExpressionCounts, MissileMetadata, ProteinChannelMarkers,MissileClusters
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, Clustering
+from cdb_cellmaps.data import MissileExpressionCounts, MissileMetadata, ProteinChannelMarkers,MissileClusters
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, Clustering
 
 # Data Models
 

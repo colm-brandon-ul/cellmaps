@@ -1,2 +1,2 @@
-cellmaps_sdk
+cdb-cellmaps[image,tabular]
 scikit-image

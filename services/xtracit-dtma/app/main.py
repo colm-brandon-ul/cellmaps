@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
-from cellmaps_sdk.data import DearrayedTissueMicroArray, DearrayedTissueMicroArrayCellSegmentationMask, DearrayedTissueMicroArrayMissileFCS, NuclearMarkers, ProteinChannelMarkers, TissueCoreMissileFCS
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, FeatureExtraction
+from cdb_cellmaps.data import DearrayedTissueMicroArray, DearrayedTissueMicroArrayCellSegmentationMask, DearrayedTissueMicroArrayMissileFCS, NuclearMarkers, ProteinChannelMarkers, TissueCoreMissileFCS
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, FeatureExtraction
 
 
 import numpy as np
@@ -115,9 +115,9 @@ class XtracitDTMA(FeatureExtraction,Automated):
 
             # Todo: Correct Prefix
             temp[core_name] = TissueCoreMissileFCS.write(
-                df = final_df,
+                final_df,
                 prefix=prefix,
-                filename=core_name,
+                file_name=core_name,
             )
 
             

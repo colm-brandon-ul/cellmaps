@@ -1,9 +1,8 @@
 from dataclasses import  dataclass, field
 from enum import Enum
-
-from cellmaps_sdk.data import DearrayedTissueMicroArray, TissueCore, TissueCoreProteinChannel
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, TechnicalVarianceCorrection
+from cdb_cellmaps.data import DearrayedTissueMicroArray, TissueCore, TissueCoreProteinChannel
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, TechnicalVarianceCorrection
 
 import ace #type: ignore
 
@@ -57,9 +56,9 @@ class AceDTMA(TechnicalVarianceCorrection,Automated):
                 # Need to correct the prefix-writing
                 prefix # This is the workflow-id + service-name (& timestamp)
                 temp[core_name][channel_name] = TissueCoreProteinChannel.write(
-                    img = new_im,
+                    data = new_im,
                     prefix=prefix.add_level(core_name),
-                    image_name=channel_name)
+                    file_name=channel_name)
         
         return AceDTMAProcessOutput(
             data=AceDTMAProcessOutput.Data(

@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from cellmaps_sdk.data import WholeSlideImage, WholeSlideImageProteinChannel
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, TechnicalVarianceCorrection
+from cdb_cellmaps.data import WholeSlideImage, WholeSlideImageProteinChannel
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, TechnicalVarianceCorrection
 
 import ace #type: ignore
 
@@ -57,9 +57,9 @@ class AceWSI(TechnicalVarianceCorrection,Automated):
 
             new_im, thresholds = ace.fastACE(channel.read())
             temp[channel_name] = WholeSlideImageProteinChannel.write(
-                    img=new_im,
+                    data=new_im,
                     prefix=prefix,
-                    image_name=channel_name)
+                    file_name=channel_name)
         
 
         return AceWSIProcessOutput(

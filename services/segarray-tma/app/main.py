@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from cellmaps_sdk.data import NuclearStain, TissueMicroArray, PredictedROIs, TissueMicroArrayProteinChannel
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, DeArray
+from cdb_cellmaps.data import NuclearStain, TissueMicroArray, RegionsOfInterestPredictions, TissueMicroArrayProteinChannel
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, DeArray
 
 import automated #type: ignore
 
@@ -35,7 +35,7 @@ class SegArrayTMAProcessOutput:
 
     @dataclass
     class WorkflowParameters:
-        predicted_rois: PredictedROIs
+        predicted_rois: RegionsOfInterestPredictions
     
     class Control(str, Enum):
         success = 'success'
@@ -58,7 +58,7 @@ class SegArrayTMA(DeArray,Automated):
         
     def process(self, prefix, input: SegArrayTMAProcessInput) -> SegArrayTMAProcessOutput:
 
-        # PredictedROIs - need to import automated and set it to return a PredictedROIs object
+        # RegionsOfInterestPredictions - need to import automated and set it to return a RegionsOfInterestPredictions object
         return SegArrayTMAProcessOutput(
             workflow_parameters=SegArrayTMAProcessOutput.WorkflowParameters(
                 predicted_rois=automated.get_rois_unet(TissueMicroArrayProteinChannel.read(

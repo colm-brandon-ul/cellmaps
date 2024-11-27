@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
-from cellmaps_sdk.data import  MembraneMarkers, NuclearStain, WholeSlideImage, WholeSlideImageCellSegmentationMask, WholeSlideImageMembraneSegmentationMask, WholeSlideImageNucleusSegmentationMask
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, CellSegmentation
+from cdb_cellmaps.data import  MembraneMarkers, NuclearStain, WholeSlideImage, WholeSlideImageCellSegmentationMask, WholeSlideImageMembraneSegmentationMask, WholeSlideImageNucleusSegmentationMask
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, CellSegmentation
 
 import hippo_deepcell #type: ignore
 

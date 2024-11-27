@@ -5,9 +5,9 @@ import logging
 import os
 from typing import Any, List, Tuple, Optional
 
-from cellmaps_sdk.data import _PNG as PNG, NuclearStain, PredictedROIs, ROIs, TissueMicroArray
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import DeArray, Interactive
+from cdb_cellmaps.data import PNG as PNG, NuclearStain, RegionsOfInterest, TissueMicroArray
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import DeArray, Interactive
 
 
 
@@ -45,7 +45,7 @@ class ManualDearrayTMAPrepareTemplateOutput:
 class ManualDearrayTMAProcessInput:
     @dataclass
     class WorkflowParameters:
-        rois: ROIs
+        rois: RegionsOfInterest
         
     workflow_parameters: WorkflowParameters
 
@@ -54,7 +54,7 @@ class ManualDearrayTMAProcessInput:
 class ManualDearrayTMAProcessOutput:
     @dataclass
     class WorkflowParameters:
-        rois: ROIs
+        rois: RegionsOfInterest
 
     class Control(str, Enum):
         success = 'success'
@@ -86,7 +86,7 @@ class ManualDearrayTMA(DeArray,Interactive):
         png = PNG.write(
             nuclear_stain_img.reduce(factor=5),
             prefix=prefix.add_level('browser-images'),
-            image_name=input.workflow_parameters.nuclear_stain)
+            file_name=input.workflow_parameters.nuclear_stain)
         
         
         return ManualDearrayTMAPrepareTemplateOutput(

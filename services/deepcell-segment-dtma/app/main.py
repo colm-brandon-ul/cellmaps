@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from enum import Enum
 import logging
 
-from cellmaps_sdk.data import DearrayedTissueMicroArray, DearrayedTissueMicroArrayCellSegmentationMask, MembraneMarkers, NuclearStain, ROIs, TissueCore, TissueCoreCellSegmentationMask, TissueCoreMembraneSegmentationMask, TissueCoreNucleusSegmentationMask
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, CellSegmentation
+from cdb_cellmaps.data import DearrayedTissueMicroArray, DearrayedTissueMicroArrayCellSegmentationMask, MembraneMarkers, NuclearStain, ROIs, TissueCore, TissueCoreCellSegmentationMask, TissueCoreMembraneSegmentationMask, TissueCoreNucleusSegmentationMask
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, CellSegmentation
 
 import hippo_deepcell #type: ignore
 

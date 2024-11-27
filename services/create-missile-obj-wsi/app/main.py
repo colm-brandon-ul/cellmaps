@@ -3,10 +3,10 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
-from cellmaps_sdk.data import WholeSlideImageMissileFCS, MissileMetadata,MissileExpressionCounts, MissileExpressionSpatialData,ProteinChannelMarkers
+from cdb_cellmaps.data import WholeSlideImageMissileFCS, MissileMetadata,MissileExpressionCounts, MissileExpressionSpatialData,ProteinChannelMarkers
 
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, DataTransformation
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, DataTransformation
 
 
 

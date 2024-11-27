@@ -3,11 +3,11 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any
 
-from cellmaps_sdk.data import (DearrayedTissueMicroArrayMissileFCS, 
+from cdb_cellmaps.data import (DearrayedTissueMicroArrayMissileFCS, 
                   MissileExpressionCounts, MissileMetadata, 
                    MissileExpressionSpatialData, ProteinChannelMarkers)
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, DataTransformation
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, DataTransformation
 import os
 
 # Libraries for interfacing between python and R environment
@@ -104,19 +104,19 @@ class CreateMissileObjectDTMA(DataTransformation,Automated):
         return CreateMissileObjectDTMAProcessOutput(
             data=CreateMissileObjectDTMAProcessOutput.Data(
                 missile_counts= MissileExpressionCounts.write(
-                            df=a, # gets rdf and coverts to pandas
+                            data=a, # gets rdf and coverts to pandas
                             prefix=prefix,
-                            filename='counts'
+                            file_name='counts'
                         ),
                 missile_spatial_data=MissileExpressionSpatialData.write(
-                            df=b, # gets rdf and coverts to pandas
+                            data=b, # gets rdf and coverts to pandas
                             prefix=prefix,
-                            filename='spatial_data'
+                            file_name='spatial_data'
                         ),
                 missile_metadata= MissileMetadata.write(
-                        df=c, # gets rdf and coverts to pandas
+                        data=c, # gets rdf and coverts to pandas
                         prefix=prefix,
-                        filename='metadata' 
+                        file_name='metadata' 
                     )
                 )
             )

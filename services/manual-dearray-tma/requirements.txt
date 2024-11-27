@@ -1,1 +1,1 @@
-cellmaps-sdk
+cdb-cellmaps[image]

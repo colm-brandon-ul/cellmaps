@@ -8,10 +8,10 @@ import requests
 
 import tifffile #type: ignore
 
-from cellmaps_sdk.data import MembraneMarkers, NuclearMarkers, NuclearStain, ProteinChannelMarker, ProteinChannelMarkers, TissueMicroArray, TissueMicroArrayProteinChannel
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Interactive, Start
-from cellmaps_sdk._config import Config as _Config
+from cdb_cellmaps.data import MembraneMarkers, NuclearMarkers, NuclearStain, ProteinChannelMarker, ProteinChannelMarkers, TissueMicroArray, TissueMicroArrayProteinChannel
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Interactive, Start
+from cdb_cellmaps._config import Config as _Config
 
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
@@ -20,11 +20,11 @@ Image.MAX_IMAGE_PIXELS = None
 
 if _Config.DEBUG() == False:
     # from hippo.data_management import data_management #type: ignore
-    from cellmaps_sdk._utils import download_stacked_tiff_locally
-    from cellmaps_sdk._raw_data import RAW_TMA,read_raw_data,get_experiment_data_urls
+    from cdb_cellmaps._utils import download_stacked_tiff_locally
+    from cdb_cellmaps._raw_data import RAW_TMA,read_raw_data,get_experiment_data_urls
 else:
     import numpy as np
-    from cellmaps_sdk._cli_utils import TestGenerator
+    from cdb_cellmaps._cli_utils import TestGenerator
 
 
 
@@ -170,9 +170,9 @@ class InitTMA(Start,Interactive):
             channel_shapes.append(p_channel_tiff.shape)
             # Need to come up with a means of getting the prefix in
             temp[p_chan] = TissueMicroArrayProteinChannel.write(
-                img=Image.fromarray(p_channel_tiff.asarray()),
+                data=Image.fromarray(p_channel_tiff.asarray()),
                 prefix=prefix,
-                image_name=p_chan)
+                file_name=p_chan)
             
 
         # Santity Check, ensure that all the protein channels written to the object storage are the same dimension

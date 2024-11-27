@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from enum import Enum
 
-from cellmaps_sdk.data import DearrayedTissueMicroArray, ROIs, TissueCore, TissueCoreProteinChannel, TissueMicroArray
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, DeArray
+from cdb_cellmaps.data import DearrayedTissueMicroArray, RegionsOfInterest, TissueCore, TissueCoreProteinChannel, TissueMicroArray
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, DeArray
 
 from image_utils import coordinate_translation #type: ignore
 
@@ -20,7 +20,7 @@ class CropCoresTMAProcessInput:
 
     @dataclass
     class WorkflowParameters:
-        rois: ROIs
+        rois: RegionsOfInterest
 
     @dataclass
     class Data:
@@ -84,10 +84,10 @@ class CropCoresTMA(DeArray,Automated):
 
                 # Change Prefix
                 temp[core_name][channel_name] = TissueCoreProteinChannel.write(
-                    img=tiff.crop(bounds), 
+                    data=tiff.crop(bounds), 
                     prefix=prefix.add_level(
                         level=core_name),
-                        image_name=channel_name
+                        file_name=channel_name
                         )
 
         return CropCoresTMAProcessOutput(

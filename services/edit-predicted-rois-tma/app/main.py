@@ -5,9 +5,10 @@ import logging
 import os
 from typing import Any, List, Tuple, Optional
 
-from cellmaps_sdk.data import _PNG as PNG, NuclearStain, PredictedROIs, ROIs, TissueMicroArray
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import DeArray, Interactive
+from cdb_cellmaps._data import PNG
+from cdb_cellmaps.data import NuclearStain, RegionsOfInterestPredictions, RegionsOfInterest, TissueMicroArray
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import DeArray, Interactive
 
 
 
@@ -30,7 +31,7 @@ class EditPredictedRoisTMAPrepareTemplateInput:
     @dataclass
     class WorkflowParameters:
         nuclear_stain: NuclearStain
-        predicted_rois: PredictedROIs
+        predicted_rois: RegionsOfInterestPredictions
     
     workflow_parameters: WorkflowParameters
     data: Data
@@ -46,7 +47,7 @@ class EditPredictedRoisTMAPrepareTemplateOutput:
 class EditPredictedRoisTMAProcessInput:
     @dataclass
     class WorkflowParameters:
-        rois: ROIs
+        rois: RegionsOfInterest
         
     workflow_parameters: WorkflowParameters
 
@@ -55,7 +56,7 @@ class EditPredictedRoisTMAProcessInput:
 class EditPredictedRoisTMAProcessOutput:
     @dataclass
     class WorkflowParameters:
-        rois: ROIs
+        rois: RegionsOfInterest
 
     class Control(str, Enum):
         success = 'success'
@@ -88,7 +89,7 @@ class EditPredictedRoisTMA(DeArray,Interactive):
         png = PNG.write(
             nuclear_stain_img.reduce(factor=5),
             prefix=prefix.add_level('browser-images'),
-            image_name=input.workflow_parameters.nuclear_stain)
+            file_name=input.workflow_parameters.nuclear_stain)
         
         
         return EditPredictedRoisTMAPrepareTemplateOutput(

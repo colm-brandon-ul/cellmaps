@@ -1,1 +1,1 @@
-cellmaps-sdk[R]
+cdb-cellmaps[R,tabular]

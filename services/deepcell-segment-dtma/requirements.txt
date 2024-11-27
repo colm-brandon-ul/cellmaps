@@ -1,4 +1,3 @@
-cellmaps-sdk
 opencv-python-headless
 scikit-image>=0.19.3
 scipy
@@ -15,3 +14,4 @@ matplotlib
 deepcell-tracking~=0.6.1
 deepcell-toolbox>=0.12.1
 pydot>=1.4.2,<2
+cdb-cellmaps[image]

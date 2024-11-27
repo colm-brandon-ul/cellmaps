@@ -8,8 +8,8 @@ import shutil
 from pathlib import Path
 import logging
 
-from cellmaps_sdk.data import *
-from cellmaps_sdk._test_utils import validate_versus_schema, is_valid_html
+from cdb_cellmaps.data import *
+from cdb_cellmaps._test_utils import validate_versus_schema, is_valid_html
 
 
 #recursive function to check if all the files referenced in the json exist
@@ -90,7 +90,7 @@ class InteractiveTest(unittest.TestCase):
             po = json.load(json_file)  
         
         # assert it versus the output schema
-        ProcessOutputSchema = {'workflow_parameters': {'rois': 'ROIs'}, 'control': {'CLASS_TYPE': 'enum', 'FIELDS': [{'name': 'success', 'value': 'success'}]}}
+        ProcessOutputSchema = {'workflow_parameters': {'rois': 'RegionsOfInterest'}, 'control': {'CLASS_TYPE': 'enum', 'FIELDS': [{'name': 'success', 'value': 'success'}]}}
 
         try: 
             validate_versus_schema(ProcessOutputSchema, po)

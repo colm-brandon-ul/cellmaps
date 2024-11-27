@@ -1,4 +1,4 @@
-cellmaps-sdk
+cdb-cellmaps[image]
 minio
 pathlib
 pillow

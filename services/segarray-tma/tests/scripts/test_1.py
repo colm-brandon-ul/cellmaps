@@ -8,8 +8,8 @@ import shutil
 from pathlib import Path
 import logging
 
-from cellmaps_sdk.data import *
-from cellmaps_sdk._test_utils import validate_versus_schema, is_valid_html
+from cdb_cellmaps.data import *
+from cdb_cellmaps._test_utils import validate_versus_schema, is_valid_html
 
 
 #recursive function to check if all the files referenced in the json exist
@@ -50,7 +50,7 @@ class AutomatedTest(unittest.TestCase):
         with open(f"{env['CINCODEBIO_JOB_ID']}/process-output.json") as json_file:
             po = json.load(json_file)  
         
-        OutputSchema = {'workflow_parameters': {'predicted_rois': 'PredictedROIs'}, 'control': {'CLASS_TYPE': 'enum', 'FIELDS': [{'name': 'success', 'value': 'success'}]}}
+        OutputSchema = {'workflow_parameters': {'predicted_rois': 'RegionsOfInterestPredictions'}, 'control': {'CLASS_TYPE': 'enum', 'FIELDS': [{'name': 'success', 'value': 'success'}]}}
         # assert it versus the output schema
 
         try: 

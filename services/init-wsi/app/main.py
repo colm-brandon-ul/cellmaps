@@ -8,18 +8,18 @@ import requests
 
 import tifffile #type: ignore
 
-from cellmaps_sdk.data import MembraneMarkers, NuclearMarkers, NuclearStain, ProteinChannelMarker, ProteinChannelMarkers, WholeSlideImage, WholeSlideImageProteinChannel
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, Interactive, Service, Start
-# from cellmaps_sdk._utils import read_minio
-from cellmaps_sdk._config import Config as _Config
+from cdb_cellmaps.data import MembraneMarkers, NuclearMarkers, NuclearStain, ProteinChannelMarker, ProteinChannelMarkers, WholeSlideImage, WholeSlideImageProteinChannel
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Interactive, Start
+# from cdb_cellmaps._utils import read_minio
+from cdb_cellmaps._config import Config as _Config
 
 
 if _Config.DEBUG() == False:
-    from cellmaps_sdk._utils import download_stacked_tiff_locally
-    from cellmaps_sdk._raw_data import RAW_WSI,read_raw_data,get_experiment_data_urls
+    from cdb_cellmaps._utils import download_stacked_tiff_locally
+    from cdb_cellmaps._raw_data import RAW_WSI,read_raw_data,get_experiment_data_urls
 else:
-    from cellmaps_sdk._cli_utils import TestGenerator
+    from cdb_cellmaps._cli_utils import TestGenerator
 
 from PIL import Image
 Image.MAX_IMAGE_PIXELS = None
@@ -161,7 +161,7 @@ class InitWSI(Start,Interactive):
             temp[p_chan] = WholeSlideImageProteinChannel.write(
                 Image.fromarray(p_channel_tiff.asarray()),
                 prefix=prefix,
-                image_name=p_chan)
+                file_name=p_chan)
 
         
         # Santity Check, ensure that all the protein channels written to the object storage are the same dimension
