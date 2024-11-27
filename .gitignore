@@ -131,3 +131,5 @@ dmypy.json
 
 local_secrets.txt
 local_dev/*
+.venv
+local.sh
