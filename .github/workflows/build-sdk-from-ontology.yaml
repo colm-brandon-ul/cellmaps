@@ -1,0 +1,90 @@
+name: Generate Code
+
+on:
+  workflow_dispatch:  # Allow manual triggering
+  push:
+    paths:
+      - "ontology/**/*.owl"
+
+jobs:
+  generate-code:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Checkout the current repository
+    - name: Checkout current repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Ensures full history is fetched
+        path: current-repo
+
+    - name: Configure Git
+      run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+    # Step 2: Clone the source repository containing the code generation script
+    - name: Clone source repository
+      uses: actions/checkout@v4
+      with:
+        repository: 'colm-brandon-ul/cdb-sdk-gen'  # Replace with actual repo
+        path: code-gen
+    
+    # Step 3: Set up the environment (e.g., Python, Node.js, etc.)
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Extract Ontology Version
+      id: get-version
+      run: |
+            cd current-repo
+            # Find the .owl file in the ontology directory
+            OWL_FILE=$(find ontology -name "cellmaps.owl" | head -n 1)
+            # Check if file exists
+            if [ -z "$OWL_FILE" ]; then
+            echo "No .owl file found in ontology directory"
+            exit 1
+            fi
+            # Extract version using grep and sed
+            VERSION=$(grep -oP 'owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">[^<]*' "$OWL_FILE" | sed -e 's/^.*>//')
+            echo "Extracted version: $VERSION"
+            echo "version=$VERSION" >> $GITHUB_ENV
+            echo "owl_file=$OWL_FILE" >> $GITHUB_ENV
+    
+    # Step 4: Install any dependencies
+    - name: Install dependencies
+      run: |
+        cd code-gen
+        pip install -r requirements.txt  # Adjust based on your project needs
+    
+    # Step 5: Generate code
+    - name: Generate Code
+      run: |
+        cd code-gen
+        python src/sdkgen.py ../current-repo/ontology/$(basename "${{ env.owl_file }}")
+
+    # Step 4: Switch to the sdk branch
+    - name: Checkout sdk branch
+      run: |
+        cd current-repo
+        git fetch origin sdk:sdk
+        git checkout sdk
+    
+    # Step 6: Copy generated code to current repository
+    - name: Copy generated code
+      run: |
+        cd current-repo
+        mkdir -p generated
+        cp -r ../code-gen/gen/* gen/
+    
+    # Step 7: Commit and push generated code (optional)
+    - name: Commit generated code
+      run: |
+        cd current-repo
+         git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add ontology
+          git commit -m "Created SDK for ontology version ${{ env.version }}"
+          git push origin sdk
