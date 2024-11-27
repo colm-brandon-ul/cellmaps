@@ -218,7 +218,7 @@
                 <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearStain" />
                 <cdb:hasInput
                     rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArray" />
-                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicition" />
+                <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicitions" />
             </rdf:Description>
         </cdb:hasModelSpecification>
         <cdb:hasModelSpecification>
@@ -235,7 +235,7 @@
                 <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#NuclearStain" />
                 <cdb:hasInput
                     rdf:resource="http://www.cellmaps.org/cellmapsontology#TissueMicroArray" />
-                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicition" />
+                <cdb:hasInput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterestPredicitions" />
                 <cdb:hasOutput rdf:resource="http://www.cellmaps.org/cellmapsontology#RegionsOfInterest" />
             </rdf:Description>
         </cdb:hasModelSpecification>
