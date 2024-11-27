@@ -42,8 +42,6 @@ jobs:
 
       - name: Build and push Image
         run: |
-          # as sibmanager has a dockerfile in it (this tries to build it, need to resolve this)
-
           CHANGED_FILES="${{ steps.changed-files.outputs.all_changed_files }}"
 
           for dockerfile in $(find ./services -name Dockerfile); do
