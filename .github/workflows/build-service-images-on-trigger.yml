@@ -69,13 +69,6 @@ jobs:
               fi
               
           done;
-      
-      - name: Upload log
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-log
-          path: build.log
-
 
 
 
