@@ -1,13 +1,13 @@
 from typing import List, Dict, Any, Set
 from ._data import (
-    ListMixin,
-    StringMixin,
+    NonAtomic,
+    CSV,
+    PNG,
     HashMapMixin,
     Atomic,
-    PNG,
-    CSV,
+    ListMixin,
     OMETIFF,
-    NonAtomic,
+    StringMixin,
 )
 
 
