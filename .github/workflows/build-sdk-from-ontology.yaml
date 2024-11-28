@@ -3,6 +3,8 @@ name: Generate Code
 on:
   workflow_dispatch:  # Allow manual triggering
   push:
+    branches:
+      - main
     paths:
       - "ontology/**/*.owl"
 
@@ -77,7 +79,7 @@ jobs:
     - name: Copy generated code
       run: |
         cd current-repo
-        mkdir -p generated
+        mkdir -p gen
         cp -r ../code-gen/gen/* gen/
     
     # Step 7: Commit and push generated code (optional)
