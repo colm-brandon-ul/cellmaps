@@ -86,8 +86,8 @@ jobs:
     - name: Commit generated code
       run: |
         cd current-repo
-         git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git add ontology
-          git commit -m "Created SDK for ontology version ${{ env.version }}"
-          git push origin sdk
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git add gen
+        git commit -m "Created SDK for ontology version ${{ env.version }}"
+        git push origin sdk
