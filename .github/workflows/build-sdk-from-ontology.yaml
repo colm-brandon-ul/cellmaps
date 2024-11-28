@@ -11,8 +11,12 @@ on:
 jobs:
   generate-code:
     runs-on: ubuntu-latest
+    environment:
+        name: pypi
+        url: https://pypi.org/p/cdb-cellmaps
     permissions:
       contents: write
+      id-token: write
     
     steps:
     # Step 1: Checkout the current repository
@@ -63,6 +67,7 @@ jobs:
       run: |
         cd code-gen
         pip install -r requirements.txt  # Adjust based on your project needs
+        pip install build  # Install build package
     
     # Step 5: Generate code
     - name: Generate Code
@@ -93,3 +98,17 @@ jobs:
         git add gen
         git commit -m "Created SDK for ontology version ${{ env.version }}"
         git push origin sdk
+
+    - name: Build package
+      run: |
+            cd current-repo/gen
+            python -m build
+
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+          packages-dir: current-repo/gen/
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
+    
+      
