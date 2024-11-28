@@ -1,1 +1,1 @@
-cdb-cellmaps[R,tabular]
+cdb-cellmaps[R,tabular,image]

@@ -3,10 +3,10 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
-from cellmaps_sdk.data import  MissileClusters, MissileNeighbourhoods, Plot
+from cdb_cellmaps.data import  MissileClusters, MissileNeighbourhoods, Plot
 
-from cellmaps_sdk import data_utils
-from cellmaps_sdk.process import Automated, Plotting
+from cdb_cellmaps import data_utils
+from cdb_cellmaps.process import Automated, Plotting
 
 from PIL import Image
 import numpy as np
@@ -82,11 +82,11 @@ class PlotCellNeighbourhoodsHeatmapMissile(Plotting,Automated):
         return PlotCellNeighbourhoodsHeatmapMissileProcessOutput(
             data=PlotCellNeighbourhoodsHeatmapMissileProcessOutput.Data(
                 heatmap=Plot.write(
-                    img = Image.fromarray(
+                    data = Image.fromarray(
                         (np.array(mobj)*255).astype(np.uint8), 
                         mode='RGB'), #Convert to PIL image
                     prefix=prefix,
-                    image_name='cell_neighbourhoods_heatmap',
+                    file_name='cell_neighbourhoods_heatmap',
                 )
             )
         )
