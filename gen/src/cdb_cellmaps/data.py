@@ -1,13 +1,13 @@
 from typing import List, Dict, Any, Set
 from ._data import (
-    NonAtomic,
-    CSV,
-    PNG,
     HashMapMixin,
-    Atomic,
-    ListMixin,
-    OMETIFF,
+    PNG,
+    CSV,
     StringMixin,
+    OMETIFF,
+    NonAtomic,
+    ListMixin,
+    Atomic,
 )
 
 
@@ -126,7 +126,7 @@ class RegionsOfInterest(ListMixin[RegionOfInterest], NonAtomic):
             instance.data.append(RegionOfInterest.decode(v))
         return instance
 
-    def encode(self) -> List[dict]:
+    def encode(self) -> list:
         return [v.encode() for v in self.data]
 
 
@@ -536,7 +536,7 @@ class RegionsOfInterestPredictions(ListMixin[RegionsOfInterestPredicition], NonA
             instance.data.append(RegionsOfInterestPredicition.decode(v))
         return instance
 
-    def encode(self) -> List[dict]:
+    def encode(self) -> list:
         return [v.encode() for v in self.data]
 
 
@@ -555,7 +555,7 @@ class ProteinChannelMarkers(ListMixin[ProteinChannelMarker], NonAtomic):
             instance.data.append(ProteinChannelMarker.decode(v))
         return instance
 
-    def encode(self) -> List[dict]:
+    def encode(self) -> list:
         return [v.encode() for v in self.data]
 
 
@@ -574,7 +574,7 @@ class NuclearMarkers(ListMixin[NuclearMarker], NonAtomic):
             instance.data.append(NuclearMarker.decode(v))
         return instance
 
-    def encode(self) -> List[dict]:
+    def encode(self) -> list:
         return [v.encode() for v in self.data]
 
 
@@ -593,7 +593,7 @@ class MembraneMarkers(ListMixin[MembraneMarker], NonAtomic):
             instance.data.append(MembraneMarker.decode(v))
         return instance
 
-    def encode(self) -> List[dict]:
+    def encode(self) -> list:
         return [v.encode() for v in self.data]
 
 
