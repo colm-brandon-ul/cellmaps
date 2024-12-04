@@ -1,9 +1,8 @@
 [project]
 name = "cdb_cellmaps"
 authors = [{name = "Colm Brandon", email = "colm.brandon@ul.ie"}]
-version = "0.0.1a0010012"
+version = "0.0.1a0010112"
 description = ""
-readme = "README.rst"
 license = {file = "LICENSE.txt"}
 keywords = [] # probably need to change this
 classifiers = [
