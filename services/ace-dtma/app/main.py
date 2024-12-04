@@ -1,4 +1,4 @@
-from dataclasses import  dataclass, field
+from dataclasses import  dataclass
 from enum import Enum
 from cdb_cellmaps.data import DearrayedTissueMicroArray, TissueCore, TissueCoreProteinChannel
 from cdb_cellmaps import data_utils

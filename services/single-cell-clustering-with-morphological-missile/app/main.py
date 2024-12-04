@@ -3,7 +3,6 @@
 
 from dataclasses import field, dataclass
 from enum import Enum
-from typing import Any
 
 from cdb_cellmaps.data import MissileExpressionCounts, MissileMetadata, ProteinChannelMarkers,MissileClusters
 from cdb_cellmaps import data_utils

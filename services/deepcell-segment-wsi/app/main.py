@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum
-import logging
 
 from cdb_cellmaps.data import  MembraneMarkers, NuclearStain, WholeSlideImage, WholeSlideImageCellSegmentationMask, WholeSlideImageMembraneSegmentationMask, WholeSlideImageNucleusSegmentationMask
 from cdb_cellmaps import data_utils

@@ -7,7 +7,6 @@ from skimage.segmentation import expand_labels
 import tensorflow as tf
 import os
 
-from operator import itemgetter
 
 import pandas as pd
 import numpy as np
@@ -165,7 +164,7 @@ def match_labels_and_correct(nucleus_mask, membrane_mask):
             else:
                 blank_membrane[mcol1:mcol2,mrow1:mrow2] += (nuc_region.label * (mem_subsection_mem == cm_id)).astype(np.uint32)
 
-        except Exception as e:
+        except Exception:
             # Where no mebrane mask is found - copy nucleus directly in to membrane mask for growth
             # print(e.with_traceback())
             col1, row1, col2, row2 = nuc_region.bbox

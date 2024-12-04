@@ -1,9 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum
-import json
-import logging
-import os
-from typing import Any, List, Tuple, Optional
 
 from cdb_cellmaps._data import PNG
 from cdb_cellmaps.data import NuclearStain, RegionsOfInterestPredictions, RegionsOfInterest, TissueMicroArray

@@ -8,7 +8,6 @@ import unet
 import cv2 
 import numpy as np
 from cdb_cellmaps.data import RegionsOfInterest, RegionsOfInterestPredictions, RegionsOfInterestPredicition, RegionOfInterest
-from cdb_cellmaps.data import RegionsOfInterest, RegionsOfInterestPredictions, RegionsOfInterestPredicition, RegionOfInterest
 
 Image.MAX_IMAGE_PIXELS = None
 

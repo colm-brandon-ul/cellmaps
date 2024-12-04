@@ -3,16 +3,12 @@
 
 from dataclasses import field, dataclass
 from enum import Enum
-from typing import Any
 
 from cdb_cellmaps.data import MissileNeighbourhoods, MissileMetadata, MissileClusters, MissileExpressionSpatialData
 from cdb_cellmaps import data_utils
 from cdb_cellmaps.process import Automated, Clustering
 
 # Libraries for interfacing between python and R environment
-import rpy2.robjects.packages as rpackages
-import rpy2.robjects as robjects
-from rpy2.robjects.vectors import StrVector
 
 # Data Models
 
@@ -65,7 +61,6 @@ class TissueArchitectureMissile(Clustering,Automated):
         # Load R Functions in Python
         from rpy2.robjects.packages import STAP # type: ignore
         import rpy2.robjects as ro # type: ignore
-        from rpy2.robjects.vectors import StrVector #type: ignore
         from rpy2.robjects import pandas2ri # type: ignore
         from rpy2.robjects.conversion import localconverter # type: ignore
        # Load in R function

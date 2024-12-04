@@ -1,7 +1,6 @@
 # DearrayedTissueMicroArrayMissileFCS -> MissileExpressions, MissileMetaData
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any
 
 from cdb_cellmaps.data import (DearrayedTissueMicroArrayMissileFCS, 
                   MissileExpressionCounts, MissileMetadata, 
@@ -70,7 +69,6 @@ class CreateMissileObjectDTMA(DataTransformation,Automated):
         from rpy2.robjects.conversion import localconverter # type: ignore
 
         # get current directory file path (so rfunc can be loaded when cwd is not app)
-        import os
         from pathlib import Path
         current_file_path = os.path.abspath(__file__)
         current_directory = Path(os.path.dirname(current_file_path))

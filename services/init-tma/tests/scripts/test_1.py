@@ -6,7 +6,6 @@ import json
 from uuid import uuid4
 import shutil
 from pathlib import Path
-import logging
 
 from cdb_cellmaps.data import *
 from cdb_cellmaps._test_utils import validate_versus_schema, is_valid_html
@@ -69,7 +68,7 @@ class InteractiveTest(unittest.TestCase):
         for directory in directories:
             try:
                 shutil.rmtree(directory)
-            except Exception as e:
+            except Exception:
                 ...
            
 
@@ -111,7 +110,7 @@ class InteractiveTest(unittest.TestCase):
         for directory in directories:
             try:
                 shutil.rmtree(directory)
-            except Exception as e:
+            except Exception:
                 ...
 if __name__ == '__main__':
     unittest.main()

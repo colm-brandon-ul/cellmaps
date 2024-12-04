@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum
-import logging
 
 from cdb_cellmaps.data import DearrayedTissueMicroArray, DearrayedTissueMicroArrayCellSegmentationMask, DearrayedTissueMicroArrayMissileFCS, NuclearMarkers, ProteinChannelMarkers, TissueCoreMissileFCS
 from cdb_cellmaps import data_utils

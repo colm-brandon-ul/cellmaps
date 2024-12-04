@@ -1,9 +1,8 @@
 from dataclasses import dataclass, asdict
 from enum import Enum
-import json
 import logging
 import os
-from typing import Any, List, Tuple, Optional
+from typing import Optional
 import requests
 
 import tifffile #type: ignore
