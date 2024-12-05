@@ -1073,7 +1073,7 @@
                     </owl:Class>
                 </rdf:type>
                 <cdb:fileName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-                    channel_markers
+                    tiff_name
                 </cdb:fileName>
             </rdf:Description>
         </cdb:hasFile>
@@ -1087,7 +1087,7 @@
                     </owl:Class>
                 </rdf:type>
                 <cdb:fileName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-                    tiff_name
+                    channel_markers
                 </cdb:fileName>
             </rdf:Description>
         </cdb:hasFile>
@@ -1311,7 +1311,7 @@
                     </owl:Class>
                 </rdf:type>
                 <cdb:fileName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-                    channel_markers
+                    tiff_name
                 </cdb:fileName>
             </rdf:Description>
         </cdb:hasFile>
@@ -1325,7 +1325,7 @@
                     </owl:Class>
                 </rdf:type>
                 <cdb:fileName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
-                    tiff_name
+                    channel_markers
                 </cdb:fileName>
             </rdf:Description>
         </cdb:hasFile>
