@@ -1,8 +1,9 @@
 [project]
 name = "cdb_cellmaps"
 authors = [{name = "Colm Brandon", email = "colm.brandon@ul.ie"}]
-version = "0.0.1a0010112"
+version = "0.0.1a0010114"
 description = ""
+readme = "README.md"
 license = {file = "LICENSE.txt"}
 keywords = [] # probably need to change this
 classifiers = [
@@ -50,12 +51,12 @@ tabular = ["pandas"]
 text = ["json","pyyaml"]
 
 
-[project.urls] # These will need to be updated
-Homepage = "http://example.com"
-Documentation = "http://example.com"
-Repository = "http://example.com"
-"Bug Tracker" = "http://example.com"
-Changelog = "http://example.com"
+[project.urls] # These will need to be updated, probably should be populated from the ontology
+Homepage = "https://cincodebio.colmb.me/"
+Documentation = "https://cincodebio.colmb.me/"
+Repository = "https://cincodebio.colmb.me/"
+"Bug Tracker" = "https://cincodebio.colmb.me/"
+Changelog = "https://cincodebio.colmb.me/"
 
 
 [project.scripts]
