@@ -1,15 +1,14 @@
 from typing import List, Dict, Any, Set
 import sys
-from functools import singledispatchmethod
 from ._data import (
-    OMETIFF,
-    Atomic,
-    CSV,
-    ListMixin,
-    HashMapMixin,
     NonAtomic,
-    PNG,
+    Atomic,
     StringMixin,
+    OMETIFF,
+    HashMapMixin,
+    CSV,
+    PNG,
+    ListMixin,
 )
 from typing_extensions import override
 
@@ -62,12 +61,8 @@ class ProteinChannelMarker(str, StringMixin, Atomic):
     def decode(cls, data) -> "ProteinChannelMarker":
         return cls(data)
 
-    @singledispatchmethod
-    def encode(self, encoding, errors):
-        raise NotImplementedError(f"Encoding not supported for {type(self)}")
-
-    @encode.register
-    def _(self) -> str:
+    @override
+    def encode(self) -> str:
         return str(self)
 
 
@@ -83,12 +78,8 @@ class NuclearStain(str, StringMixin, Atomic):
     def decode(cls, data) -> "NuclearStain":
         return cls(data)
 
-    @singledispatchmethod
-    def encode(self, encoding, errors):
-        raise NotImplementedError(f"Encoding not supported for {type(self)}")
-
-    @encode.register
-    def _(self) -> str:
+    @override
+    def encode(self) -> str:
         return str(self)
 
 
@@ -104,12 +95,8 @@ class NuclearMarker(str, StringMixin, Atomic):
     def decode(cls, data) -> "NuclearMarker":
         return cls(data)
 
-    @singledispatchmethod
-    def encode(self, encoding, errors):
-        raise NotImplementedError(f"Encoding not supported for {type(self)}")
-
-    @encode.register
-    def _(self) -> str:
+    @override
+    def encode(self) -> str:
         return str(self)
 
 
@@ -125,12 +112,8 @@ class MembraneMarker(str, StringMixin, Atomic):
     def decode(cls, data) -> "MembraneMarker":
         return cls(data)
 
-    @singledispatchmethod
-    def encode(self, encoding, errors):
-        raise NotImplementedError(f"Encoding not supported for {type(self)}")
-
-    @encode.register
-    def _(self) -> str:
+    @override
+    def encode(self) -> str:
         return str(self)
 
 
