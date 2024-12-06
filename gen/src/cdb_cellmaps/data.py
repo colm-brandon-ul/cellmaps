@@ -1,12 +1,12 @@
 from typing import List, Dict, Any, Set
 from ._data import (
-    PNG,
-    Atomic,
-    CSV,
-    NonAtomic,
-    HashMapMixin,
-    ListMixin,
     OMETIFF,
+    NonAtomic,
+    ListMixin,
+    CSV,
+    PNG,
+    HashMapMixin,
+    Atomic,
     StringMixin,
 )
 
