@@ -4,11 +4,11 @@ from ._data import (
     NonAtomic,
     Atomic,
     StringMixin,
-    OMETIFF,
-    HashMapMixin,
-    CSV,
-    PNG,
     ListMixin,
+    CSV,
+    OMETIFF,
+    PNG,
+    HashMapMixin,
 )
 from typing_extensions import override
 
