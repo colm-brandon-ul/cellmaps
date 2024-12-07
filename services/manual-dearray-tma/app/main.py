@@ -84,6 +84,9 @@ class ManualDearrayTMA(DeArray,Interactive):
             prefix=prefix.add_level('browser-images'),
             file_name=input.workflow_parameters.nuclear_stain)
         
+        import logging  
+        logging.warning(f"PNG: {png.url}")
+        
         
         return ManualDearrayTMAPrepareTemplateOutput(
             html=template.render(
