@@ -1,5 +1,107 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style>
+        /* General Reset */
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Form Styling */
+form {
+    max-width: 60vw;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"], 
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Button Group */
+#confidenceLevelControls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#confidenceLevelControls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#confidenceLevelControls button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    form button {
+        width: 100%;
+    }
+
+    #confidenceLevelControls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #confidenceLevelControls button {
+        margin-bottom: 10px;
+    }
+}
+    </style>
+</head>
 <title>Initialise Whole Slide Image</title>
 <body>
     
@@ -8,16 +110,16 @@
     <form id="experimentalDataForm">
         <!-- Cycling through experimental data -->
     <div id="confidenceLevelControls">
-        <button onclick=cycleExperiments(-1)>
-            <
+        <button type="button" onclick=cycleExperiments(-1)>
+            &lt;
         </button>
         <!-- <p id="experimentDisplay">Experiment:</p> -->
         <!-- Have to select a datafile -->
         <label for="experiment_data_id">Experiment ID:</label>
         <input type="text" name="experiment_data_id" id="experiment_data_id" readonly required>
         
-        <button onclick=cycleExperiments(1)>
-            >
+        <button type="button" onclick=cycleExperiments(1)>
+            &gt;
         </button>
     </div>
     <!-- Have to select a datafile -->
