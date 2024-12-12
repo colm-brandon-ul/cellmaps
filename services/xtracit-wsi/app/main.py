@@ -69,54 +69,51 @@ class XtracitWSI(FeatureExtraction,Automated):
         # What do with channel markers?
         membrane_channels = [c for c in input.workflow_parameters.protein_channel_markers if c not in input.workflow_parameters.nuclear_markers]
 
-        try:
-            membrane_mask = np.array(input.data.whole_slide_image_cell_segmentation_mask.membrane_mask.read())
-            # Creating the membrane channel stack
-            all_membrane_protein_channels = []
 
-            for channel in membrane_channels:
-                all_membrane_protein_channels.append(np.array(input.data.whole_slide_image[channel].read()))
+        membrane_mask = np.array(input.data.whole_slide_image_cell_segmentation_mask.membrane_mask.read())
+        # Creating the membrane channel stack
+        all_membrane_protein_channels = []
 
-            membrane_protein_channel_stack = np.stack(all_membrane_protein_channels,axis=2)
+        for channel in membrane_channels:
+            all_membrane_protein_channels.append(np.array(input.data.whole_slide_image[channel].read()))
 
-            # Fix prefixes
-            membrane_df = to_tabular_format.extract_membrane_for_core(membrane_mask,
-                                membrane_protein_channel_stack,
-                                "A0",
-                                membrane_channels)
-            # Delete from memory
-            del membrane_protein_channel_stack, membrane_mask
+        membrane_protein_channel_stack = np.stack(all_membrane_protein_channels,axis=2)
 
-            nucleus_mask = np.array(input.data.whole_slide_image_cell_segmentation_mask.nucleus_mask.read())
+        # Fix prefixes
+        membrane_df = to_tabular_format.extract_membrane_for_core(membrane_mask,
+                            membrane_protein_channel_stack,
+                            "A0",
+                            membrane_channels)
+        # Delete from memory
+        del membrane_protein_channel_stack, membrane_mask
 
-            # Create nuclear channel stack
-            all_nuclear_protein_channels = []
-            for channel in input.workflow_parameters.nuclear_markers:
-                all_nuclear_protein_channels.append(np.array(input.data.whole_slide_image[channel].read()))
+        nucleus_mask = np.array(input.data.whole_slide_image_cell_segmentation_mask.nucleus_mask.read())
 
-            # W x H x NUMBER_OF_PROTEIN_CHANNELS 
-            nuclear_protein_channel_stack = np.stack(all_nuclear_protein_channels,axis=2)
+        # Create nuclear channel stack
+        all_nuclear_protein_channels = []
+        for channel in input.workflow_parameters.nuclear_markers:
+            all_nuclear_protein_channels.append(np.array(input.data.whole_slide_image[channel].read()))
 
-            nuclear_df = to_tabular_format.extract_nucelus_for_core(
-                nucleus_mask,
-                nuclear_protein_channel_stack,
-                "A0",
-                input.workflow_parameters.nuclear_markers)
-            
+        # W x H x NUMBER_OF_PROTEIN_CHANNELS 
+        nuclear_protein_channel_stack = np.stack(all_nuclear_protein_channels,axis=2)
 
-            # delete from memory
-            del nuclear_protein_channel_stack, nucleus_mask
+        nuclear_df = to_tabular_format.extract_nucelus_for_core(
+            nucleus_mask,
+            nuclear_protein_channel_stack,
+            "A0",
+            input.workflow_parameters.nuclear_markers)
+        
 
-            final_df = to_tabular_format.get_final_dataframe(membrane_df,nuclear_df)
+        # delete from memory
+        del nuclear_protein_channel_stack, nucleus_mask
 
-            # Todo: fix prefix
-            temp = WholeSlideImageMissileFCS.write(final_df,
-                                                   prefix=prefix,
-                                                    file_name="AO")
+        final_df = to_tabular_format.get_final_dataframe(membrane_df,nuclear_df)
 
-        except Exception as e:
-            
-            logging.warning(f'WSI failed because of: {e.with_traceback}')
+        # Todo: fix prefix
+        temp = WholeSlideImageMissileFCS.write(final_df,
+                                                prefix=prefix,
+                                                file_name="AO")
+
 
         
         return XtracitWSIProcessOutput(
