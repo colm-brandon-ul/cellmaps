@@ -101,7 +101,7 @@ class XtracitWSI(FeatureExtraction,Automated):
             nucleus_mask,
             nuclear_protein_channel_stack,
             "A0",
-            input.workflow_parameters.nuclear_markers)
+            input.workflow_parameters.nuclear_markers.encode())
         
 
         # delete from memory

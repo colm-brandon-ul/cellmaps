@@ -81,7 +81,7 @@ def extract_nucelus_for_core(nucleus_mask,channel_stack,core_name,channels_to_in
     for k,v in NUC_COL_REGION_MAP.items():
         df[k] = extractedDataNucTab[v]
     
-   
+
     
     # Create a dataframe for the storing the outcoming of the extraction of the signals
     cell_signal_df = pd.DataFrame()
