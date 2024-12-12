@@ -33,7 +33,7 @@ class SingleCellClusteringMissileProcessInput:
     class ServiceParameters:
         numNeighbours: int = 10
         
-    service_parameters: ServiceParameters
+    service_parameters: ServiceParameters = ServiceParameters()
     workflow_parameters: WorkflowParameters
     system_parameters: SystemParameters
     data: Data

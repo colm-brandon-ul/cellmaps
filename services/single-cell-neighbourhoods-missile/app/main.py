@@ -36,7 +36,7 @@ class TissueArchitectureMissileProcessInput:
         k: int = field(default=10, metadata={"max": 15, "min": 3})
         number_of_cells: int = field(default=10, metadata={"max": 15, "min": 3})
 
-    service_parameters: ServiceParameters
+    service_parameters: ServiceParameters = ServiceParameters()
     system_parameters: SystemParameters
     data: Data
 
