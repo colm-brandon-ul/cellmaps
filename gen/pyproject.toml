@@ -1,7 +1,7 @@
 [project]
 name = "cdb_cellmaps"
 authors = [{name = "Colm Brandon", email = "colm.brandon@ul.ie"}]
-version = "0.0.1a1000205"
+version = "0.0.1a1000206"
 description = ""
 readme = "README.md"
 license = {file = "LICENSE.txt"}
