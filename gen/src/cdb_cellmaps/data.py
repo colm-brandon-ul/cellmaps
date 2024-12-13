@@ -1,14 +1,14 @@
 from typing import List, Dict, Any, Set
 import sys
 from ._data import (
-    OMETIFF,
-    ListMixin,
-    HashMapMixin,
-    StringMixin,
     NonAtomic,
     CSV,
+    StringMixin,
     Atomic,
+    HashMapMixin,
+    ListMixin,
     PNG,
+    OMETIFF,
 )
 from typing_extensions import override
 
