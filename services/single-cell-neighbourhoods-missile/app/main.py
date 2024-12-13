@@ -81,16 +81,16 @@ class TissueArchitectureMissile(Clustering,Automated):
             c = ro.conversion.py2rpy(input.data.missile_spatial_data.read())
 
         # Call R Fuction
+        # #input.service_parameters.number_of_cells,
+        #input.service_parameters.k
         mobj = rfuncs.cellNeighbourhoods(
             a,
             b,
             c,
-            10, #input.service_parameters.number_of_cells,
-            10 #input.service_parameters.k
+            10, 
+            10 
         )
 
-        
-        
         with localconverter(ro.default_converter + pandas2ri.converter):
             d = ro.conversion.rpy2py(mobj)
         
