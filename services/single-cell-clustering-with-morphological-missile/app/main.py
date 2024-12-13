@@ -33,11 +33,11 @@ class SingleCellClusteringWithMorphologicalMissileProcessInput:
     class WorkflowParameters:
         protein_channel_markers: ProteinChannelMarkers
 
-    @dataclass 
-    class ServiceParameters:
-        numNeighbours: int = field(default=20,metadata={"max": 30, "min": 3})
+    # @dataclass 
+    # class ServiceParameters:
+    #     numNeighbours: int = field(default=20,metadata={"max": 30, "min": 3})
 
-    service_parameters: ServiceParameters = ServiceParameters()
+    # service_parameters: ServiceParameters = ServiceParameters()
     workflow_parameters: WorkflowParameters
     system_parameters: SystemParameters
     data: Data
@@ -87,7 +87,7 @@ class SingleCellClusteringWithMorphologicalMissile(Clustering,Automated):
             a,
             b,
             ro.StrVector(input.workflow_parameters.protein_channel_markers.encode()),
-            input.service_parameters.numNeighbours
+            20 #input.service_parameters.numNeighbours
         )
 
         with localconverter(ro.default_converter + pandas2ri.converter):

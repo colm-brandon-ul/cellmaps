@@ -31,12 +31,12 @@ class TissueArchitectureMissileProcessInput:
         missile_spatial_data: MissileExpressionSpatialData
 
 
-    @dataclass 
-    class ServiceParameters:
-        k: int = field(default=10, metadata={"max": 15, "min": 3})
-        number_of_cells: int = field(default=10, metadata={"max": 15, "min": 3})
+    # @dataclass 
+    # class ServiceParameters:
+    #     k: int = field(default=10, metadata={"max": 15, "min": 3})
+    #     number_of_cells: int = field(default=10, metadata={"max": 15, "min": 3})
 
-    service_parameters: ServiceParameters = ServiceParameters()
+    # service_parameters: ServiceParameters = ServiceParameters()
     system_parameters: SystemParameters
     data: Data
 
@@ -85,8 +85,8 @@ class TissueArchitectureMissile(Clustering,Automated):
             a,
             b,
             c,
-            input.service_parameters.number_of_cells,
-            input.service_parameters.k
+            10, #input.service_parameters.number_of_cells,
+            10 #input.service_parameters.k
         )
 
         
