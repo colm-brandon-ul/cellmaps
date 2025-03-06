@@ -1,14 +1,15 @@
 from typing import List, Dict, Any, Set
 import sys
 from ._data import (
-    NonAtomic,
-    CSV,
-    StringMixin,
-    Atomic,
-    HashMapMixin,
-    ListMixin,
     PNG,
+    TorchScript,
+    StringMixin,
+    HashMapMixin,
+    NonAtomic,
     OMETIFF,
+    ListMixin,
+    CSV,
+    Atomic,
 )
 from typing_extensions import override
 
@@ -444,6 +445,23 @@ class TissueMicroArrayProteinChannel(OMETIFF, Atomic):
 
     @classmethod
     def decode(cls, data) -> "TissueMicroArrayProteinChannel":
+        instance = cls(url=data["url"])
+        return instance
+
+    def encode(self) -> dict:
+        return self.__dict__
+
+
+class DeArrayModelPt(TorchScript, Atomic):
+    """This class describes a dearraying model using the torchscript model format"""
+
+    url: str
+
+    def __init__(self, url) -> None:
+        super().__init__(url)
+
+    @classmethod
+    def decode(cls, data) -> "DeArrayModelPt":
         instance = cls(url=data["url"])
         return instance
 
